@@ -25,7 +25,7 @@ const Header = () => {
             Up to 10% <p className=" mt-[-35px]">off Voucher</p> 
           </p>
 
-        <Link to={"/"} className=" group flex items-center   gap-2  text-[25px] underline-offset-8 underline">Shop Now <span className=" group-hover:translate-x-2 duration-500 text-[30px] pt-2"><FaArrowRightLong/></span> </Link>
+        <Link to={"/"} className=" group flex items-center   gap-2  text-[18px] underline-offset-8 underline">Shop Now <span className=" group-hover:translate-x-2 duration-500 text-[26px] pt-2"><FaArrowRightLong/></span> </Link>
         </div>
       </div>
 

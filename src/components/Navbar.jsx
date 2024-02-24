@@ -21,10 +21,10 @@ const Navbar = () => {
           <input
             type="text"
             id="password"
-            class=" text-[14px] outline-none pl-3 pr-10 py-2  bg-gray-100 rounded-[3px] hover:border-gray-300  "
+            className=" text-[14px] outline-none pl-3 pr-10 py-2  bg-gray-100 rounded-[3px] hover:border-gray-300  "
             placeholder="What are you looking for?"
           />
-          <button class="  font-bold text-center text-[20px]   ml-[-30px]  text-gray-400  hover:text-gray-900 transition-colors">
+          <button className="  font-bold text-center text-[20px]   ml-[-30px]  text-gray-400  hover:text-gray-900 transition-colors">
             <CiSearch />
           </button>
         </div>
