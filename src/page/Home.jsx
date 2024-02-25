@@ -4,6 +4,7 @@ import Today from '../components/Today'
 import Categories from '../components/Categories'
 import ThisMonth from '../components/ThisMonth'
 import Offer from '../components/Offer'
+import OurProducts from '../components/OurProducts'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Categories/>
       <ThisMonth/>
       <Offer/>
+      <OurProducts/>
       </div>
     </div>
   )

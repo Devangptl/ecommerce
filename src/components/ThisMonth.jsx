@@ -41,13 +41,18 @@ const ThisMonth = () => {
                   </div>
                 </div>
 
-                <Link className=" bg-gray-100 rounded-[5px]  " to={"/"}>
+                <Link className=" relative overflow-hidden bg-gray-100 rounded-[5px]  " to={"/"}>
                   <img
                     width={300}
                     className="  py-4 px-5 hover:scale-105 duration-300  "
                     src={item.thumbnail}
                     alt=""
                   />
+                  <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
+                  <button className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
+                     Add to cart
+                  </button>
+                </div>
                 </Link>
 
                 <p className=" text-[18px] font-[1000]">{item.title}</p>
