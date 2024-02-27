@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { GoHeart } from "react-icons/go";
 import { BsCart3 } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   return (
@@ -10,10 +11,30 @@ const Navbar = () => {
       <div className="  text-[24px] font-bold"> Gada Electronics</div>
 
       <div className=" tracking-wide text-[#3c3c3c] text-lg   flex flex-row items-center gap-9">
-        <Link to={"/"} className=" duration-300 underline-offset-8 hover:underline  hover:text-orange-600">Home</Link>
-        <Link to={"/contact"} className="duration-300 underline-offset-8 hover:underline  hover:text-orange-600">Contact</Link>
-        <Link to={"/about"} className="duration-300 underline-offset-8 hover:underline  hover:text-orange-600">About</Link>
-        <Link to={"/signup"} className="duration-300 underline-offset-8 hover:underline  hover:text-orange-600">Sign Up</Link>
+        <Link
+          to={"/"}
+          className=" duration-300 underline-offset-8 hover:underline  hover:text-orange-600"
+        >
+          Home
+        </Link>
+        <Link
+          to={"/contact"}
+          className="duration-300 underline-offset-8 hover:underline  hover:text-orange-600"
+        >
+          Contact
+        </Link>
+        <Link
+          to={"/about"}
+          className="duration-300 underline-offset-8 hover:underline  hover:text-orange-600"
+        >
+          About
+        </Link>
+        <Link
+          to={"/signup"}
+          className="duration-300 underline-offset-8 hover:underline  hover:text-orange-600"
+        >
+          Sign Up
+        </Link>
       </div>
 
       <div className=" text-[#3c3c3c]  flex flex-row items-center gap-7">
@@ -34,11 +55,11 @@ const Navbar = () => {
         </Link>
 
         <Link to={"/cart"} className=" text-[23px]">
-        {/* <FaOpencart /> */}
-        <BsCart3 />
-        
+          <BsCart3 />
         </Link>
-
+        <div  className=" bg-[#db4444] cursor-pointer  rounded-full text-white text-[25px]">
+        <CgProfile/>
+        </div>
       </div>
     </div>
   );

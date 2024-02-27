@@ -88,7 +88,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <p className="text-center text-[15px]  pb-4 text-[#6a6a6a]"> <span className=" text-[20px]">©</span> Copyright Rimel 2022. All right reserved</p>
+      <p className="text-center text-[15px]  pb-4 text-[#6a6a6a]"> <span className=" text-[20px]">©</span> Copyright Rimel 2024. All right reserved</p>
 
     </div>
   );
