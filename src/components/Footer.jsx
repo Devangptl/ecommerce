@@ -1,4 +1,10 @@
 import React from "react";
+import { AiOutlineSend } from "react-icons/ai";
+import { IoLogoInstagram } from "react-icons/io5";
+import { FiLinkedin } from "react-icons/fi";
+import { RiTwitterXFill } from "react-icons/ri";
+import { FiGithub } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,8 +21,8 @@ const Footer = () => {
               className=" text-[14px] outline-none border w-[190px] border-white bg-black pl-3 pr-10 py-2   rounded-[3px] hover:border-gray-300  "
               placeholder="Enter your email"
             />
-            <button className="  font-bold text-center text-[20px]   ml-[-30px]  text-gray-400  hover:text-gray-900 transition-colors">
-              S
+            <button className="  font-bold text-center text-[20px]   ml-[-30px]">
+            <AiOutlineSend />
             </button>
           </div>
         </div>
@@ -28,9 +34,9 @@ const Footer = () => {
           </div>
 
           <div className="pr-[30px] flex flex-col gap-2 text-[14px]">
-            <p>Navrangpura, 10, Vithalbhai Patel Colony, Ahmedabad, Gujrat </p>
-            <p>gadaelectronics@gmail.com </p>
-            <p>+88015-88888-9999 </p>
+            <p className="hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4">Navrangpura, 10, Vithalbhai Patel Colony, Ahmedabad, Gujrat </p>
+            <p className="hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4">gadaelectronics@gmail.com </p>
+            <p className="hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4">+88015-88888-9999 </p>
           </div>
 
         </div>
@@ -41,12 +47,12 @@ const Footer = () => {
             <p className="text-[22px] font-bold">Account</p>
           </div>
 
-          <div className=" flex flex-col gap-2 text-[14px]">
-            <p>My Account </p>
-            <p>Login / Register </p>
-            <p>Cart</p>
-            <p>Wishlist</p>
-            <p>Shop</p>
+          <div className=" flex flex-col gap-2 text-[14px] w-[40%]">
+            <p className="hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4 ">My Account </p>
+            <p className="hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4 ">Login / Register </p>
+            <p className="hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4 ">Cart</p>
+            <p className="hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4 ">Wishlist</p>
+            <p className="hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4 ">Shop</p>
           </div>
 
         </div>
@@ -57,10 +63,10 @@ const Footer = () => {
             <p className="text-[22px] font-bold">Quick Link</p>
           </div>
 
-          <div className=" flex flex-col gap-2 text-[14px]">
-            <p>Terms Of Use </p>
-            <p>FAQ </p>
-            <p>Contact </p>
+          <div className=" flex flex-col gap-2 text-[14px] w-[40%]">
+            <p className=" hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4">Terms Of Use </p>
+            <p className=" hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4">FAQ </p>
+            <p className=" hover:text-[#db4444]  duration-300 cursor-pointer hover:underline underline-offset-4">Contact </p>
           </div>
 
         </div>
@@ -71,15 +77,19 @@ const Footer = () => {
             <p className="text-[22px] font-bold">Social</p>
           </div>
 
-          <div className=" flex  gap-2 ">
-            <p> Ins </p>
-            <p> Twi </p>
-            <p> Lin </p>
+          <div className=" flex items-center  gap-4 text-[20px] ">
+            <Link className=" hover:text-[#db4444] hover:scale-110 duration-500 cursor-pointer"> <FiLinkedin/> </Link>
+            <Link className=" hover:text-[#db4444] hover:scale-110 duration-500 cursor-pointer"> <FiGithub/> </Link>
+            <Link className=" hover:text-[#db4444] hover:scale-110 duration-500 cursor-pointer"> <IoLogoInstagram/> </Link>
+            <Link className=" hover:text-[#db4444] hover:scale-110 duration-500 cursor-pointer"> <RiTwitterXFill/> </Link>
        
           </div>
 
         </div>
       </div>
+
+      <p className="text-center text-[15px]  pb-4 text-[#6a6a6a]"> <span className=" text-[20px]">©</span> Copyright Rimel 2022. All right reserved</p>
+
     </div>
   );
 };
