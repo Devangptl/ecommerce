@@ -4,6 +4,7 @@ import Home from "./page/Home";
 import Footer from "./components/Footer";
 import Login from "./page/Login";
 import Signup from "./page/Signup";
+import Wishlist from "./page/Wishlist";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
+        <Route path="/wishlist" element={<Wishlist/>} />
       </Routes>
       <Footer/>
     </div>

@@ -7,7 +7,7 @@ import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   return (
-    <div className=" border border-b-2 py-5  flex flex-row justify-around items-center">
+    <div className=" fixed top-0 z-20 w-full bg-white border border-b-2 py-5  flex flex-row justify-around items-center">
       <div className="  text-[24px] font-bold"> Gada Electronics</div>
 
       <div className=" tracking-wide text-[#3c3c3c] text-lg   flex flex-row items-center gap-9">
@@ -57,8 +57,28 @@ const Navbar = () => {
         <Link to={"/cart"} className=" text-[23px]">
           <BsCart3 />
         </Link>
-        <div  className=" bg-[#db4444] cursor-pointer  rounded-full text-white text-[25px]">
-        <CgProfile/>
+
+        <div className="dropdown dropdown-hover">
+          <div tabIndex={0} role="button" className=" bg-[#db4444] rounded-full text-[25px] text-white m-1">
+            <CgProfile />
+          </div>
+          <ul
+            tabIndex={0}
+            className=" bgblure backdrop-filter backdrop-blur-[80px]  dropdown-content ml-[-100px] z-[1] menu p-2 shadow text-[#30a692] bg-none  rounded-box w-52"
+          >
+            <li>
+              <Link className=" hover:bg-[#eaeaea]" to={"/profile"}>Manage My Account</Link>
+            </li>
+            <li>
+              <Link className=" hover:bg-[#eaeaea]" to={"/order"}>My Order</Link>
+            </li>
+            <li>
+              <Link className=" hover:bg-[#eaeaea]" to={"/signup"}>Login</Link>
+            </li>
+            <li>
+              <Link className=" hover:bg-[#eaeaea]" to={"/signup"}>Sign up</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

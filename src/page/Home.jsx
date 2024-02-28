@@ -9,7 +9,7 @@ import NewArrival from '../components/NewArrival'
 
 const Home = () => {
   return (
-    <div>
+    <div className=' mt-[67px]'>
       <Header/>
       <div className=' px-[10%]'>
       <Today/>
