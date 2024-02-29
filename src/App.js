@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Login from "./page/Login";
 import Signup from "./page/Signup";
 import Wishlist from "./page/Wishlist";
+import Cart from "./page/Cart";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
         <Route path="/wishlist" element={<Wishlist/>} />
+        <Route path="/cart" element={<Cart/>} />
       </Routes>
       <Footer/>
     </div>
