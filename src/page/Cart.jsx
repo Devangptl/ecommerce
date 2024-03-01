@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
+
+const [amount , setAmount] = useState(1)
+
+const setDecrease = () =>{
+  amount  > 0 ? setAmount(amount -  1): setAmount(1)
+}
+const setIncrease = () =>{
+  amount <  99 ? setAmount(amount +  1) : setAmount(99)
+}
+
+  let Price = 0
+  data.map((item)=>{
+     Price += item.price * item.quantity;
+  })
+
+  const Text = 0
 
 
 
@@ -50,7 +66,7 @@ const Cart = () => {
                     <td>
                       <p className="">{item.price}</p>
                     </td>
-                    <td className=" font-bold"> <span className=" px-3 mx-1 rounded-md font-normal bg-slate-200 "> - </span> {item.quantity} <span className=" px-3 mx-1 font-normal rounded-md bg-slate-200">+</span> </td>
+                    <td className=" font-bold"> <span onClick={setDecrease} className=" cursor-pointer px-3 mx-1 rounded-md font-normal bg-slate-200 "> - </span> {amount} <span onClick={setIncrease} className=" cursor-pointer px-3 mx-1 font-normal rounded-md bg-slate-200">+</span> </td>
                     <th>
                       <button className="btn btn-ghost btn-xs">
                         {item.price * item.quantity}
@@ -94,7 +110,7 @@ const Cart = () => {
                   <div className="flex items-center   gap-52 ">
                     <div className="">Subtotal:</div>
                     <div>
-                      <div className="font-bold">120000</div>
+                      <div className="font-bold">{Price}</div>
                     </div>
                   </div>
                 </td>
@@ -119,7 +135,7 @@ const Cart = () => {
                   <div className="flex items-center   gap-52 ">
                     <div className="">Total:</div>
                     <div>
-                      <div className="font-bold ml-[23px]">120000</div>
+                      <div className="font-bold ml-[23px]">{Price + Text}</div>
                     </div>
                   </div>
                 </td>
