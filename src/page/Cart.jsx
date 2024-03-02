@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  getCartTotal,
+  removerItem,
+  decreaseItemQuantity,
+  increaseItemQuantity,
+} from "../features/cartSlice";
+import { toast } from "sonner";
+import { FaMinus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const Cart = () => {
+  const tost = (title) => {
+    toast.success(`${title} Remove to cart`);
+  };
 
-const [amount , setAmount] = useState(1)
+  const { cart, totalQuantity, totalPrice } = useSelector(
+    (state) => state.allCart
+  );
 
-const setDecrease = () =>{
-  amount  > 0 ? setAmount(amount -  1): setAmount(1)
-}
-const setIncrease = () =>{
-  amount <  99 ? setAmount(amount +  1) : setAmount(99)
-}
+  const dispatch = useDispatch();
 
-  let Price = 0
-  data.map((item)=>{
-     Price += item.price * item.quantity;
-  })
-
-  const Text = 0
-
-
-
-
+  useEffect(() => {
+    dispatch(getCartTotal());
+  }, [cart]);
 
   return (
     <div className=" mt-[5%]">
@@ -48,7 +52,7 @@ const setIncrease = () =>{
             </thead>
             <tbody className="  mb-10 ">
               {/* row 1 */}
-              {data.map((item) => {
+              {cart.map((item) => {
                 return (
                   <tr className=" shadow  ">
                     <td className=" ">
@@ -66,10 +70,44 @@ const setIncrease = () =>{
                     <td>
                       <p className="">{item.price}</p>
                     </td>
-                    <td className=" font-bold"> <span onClick={setDecrease} className=" cursor-pointer px-3 mx-1 rounded-md font-normal bg-slate-200 "> - </span> {amount} <span onClick={setIncrease} className=" cursor-pointer px-3 mx-1 font-normal rounded-md bg-slate-200">+</span> </td>
+                    <td className="  font-bold">
+                      <div className=" flex gap-2 items-center ">
+
+                      
+                      {" "}
+                      <p
+                        onClick={
+                          item.quantity === 1
+                            ? () => dispatch(removerItem(item.id))
+                            : () => dispatch(decreaseItemQuantity(item.id))
+                        }
+                        className=" text-[15px] px-2 py-1 cursor-pointer rounded-md font-normal bg-slate-200 "
+                      >
+                        {" "}
+                        <FaMinus />{" "}
+                      </p>{" "}
+                      {item.quantity}{" "}
+                      <p
+                        onClick={() => dispatch(increaseItemQuantity(item.id))}
+                        className=" cursor-pointer px-2 py-1  font-normal rounded-md bg-slate-200"
+                      >
+                        <FaPlus />
+                      </p>{" "}
+                      </div>
+                    </td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">
+                      <p className="btn btn-ghost btn-xs">
                         {item.price * item.quantity}
+                      </p>
+                    </th>
+                    <th>
+                      <button
+                        onClick={() =>
+                          dispatch(removerItem(item.id)) ? tost(item.title) : ""
+                        }
+                        className="btn btn-ghost btn-xs"
+                      >
+                        <MdDelete/>
                       </button>
                     </th>
                   </tr>
@@ -108,9 +146,23 @@ const setIncrease = () =>{
               <tr className="   ">
                 <td className=" ">
                   <div className="flex items-center   gap-52 ">
+                    <div className="">Quantity:</div>
+                    <div>
+                      <div className="font-bold ml-[-2.9px]">
+                        {totalQuantity}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </div>
+            <div className="border-b-[2px] border-[#a4a4a4]  my-3 py-2 px-1">
+              <tr className="   ">
+                <td className=" ">
+                  <div className="flex items-center   gap-52 ">
                     <div className="">Subtotal:</div>
                     <div>
-                      <div className="font-bold">{Price}</div>
+                      <div className="font-bold">{totalPrice}</div>
                     </div>
                   </div>
                 </td>
@@ -135,71 +187,26 @@ const setIncrease = () =>{
                   <div className="flex items-center   gap-52 ">
                     <div className="">Total:</div>
                     <div>
-                      <div className="font-bold ml-[23px]">{Price + Text}</div>
+                      <div className="font-bold ml-[23px]">{totalPrice}</div>
                     </div>
                   </div>
                 </td>
               </tr>
             </div>
 
-<div className=" text-center py-3">
-
-            <Link
-              to={"/"}
-              className=" px-10 py-3  rounded-sm bg-[#db4444] border-[#db4444] border-2  text-white "
-            >
-              Process to checkout
-            </Link>
-</div>
+            <div className=" text-center py-3">
+              <Link
+                to={"/"}
+                className=" px-10 py-3  rounded-sm bg-[#db4444] border-[#db4444] border-2  text-white "
+              >
+                Process to checkout
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
-
-const data = [
-  {
-    id: 1,
-    title: "Airpods",
-    price: 14999,
-    discountPercentage: 12,
-    rating: 4.6,
-    quantity: 2,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765151/airpods-32433_ok1ecz.png",
-  },
-  {
-    id: 2,
-    title: "Cannon EOS R5",
-    price: 54999,
-    discountPercentage: 20,
-    rating: 4.01,
-    quantity: 1,
-    stock: 94,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765152/136167791_cf95fa0a-16e8-4bad-9ec4-ed3086a9a70a_wmoolp.jpg",
-  },
-  {
-    id: 3,
-    title: "Apple Desktop",
-    price: 59999,
-    discountPercentage: 10,
-    rating: 4.54,
-    quantity: 1,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765152/135017381_3d488c19-24ef-47d0-bb3f-38b913bc1751_tt52ww.jpg",
-  },
-  {
-    id: 4,
-    title: "Mouse Wireless",
-    price: 699,
-    discountPercentage: 40,
-    rating: 3.99,
-    quantity: 3,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765152/89206201_A_computer_mouse_with_a_light_-10_wbp6bn.jpg",
-  },
-];
 
 export default Cart;

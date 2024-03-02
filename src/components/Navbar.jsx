@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { GoHeart } from "react-icons/go";
 import { BsCart3 } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartTotal } from "../features/cartSlice";
 
 const Navbar = () => {
+  const { cart, totalQuantity } = useSelector((state) => state.allCart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCartTotal());
+  }, [cart]);
+
   return (
     <div className=" fixed top-0 z-20 w-full bg-white border border-b-2 py-5  flex flex-row justify-around items-center">
       <div className="  text-[24px] font-bold"> Gada Electronics</div>
@@ -54,12 +63,20 @@ const Navbar = () => {
           <GoHeart className=" hover:text-[#ac2121] " />
         </Link>
 
-        <Link to={"/cart"} className=" text-[23px]">
+        <Link to={"/cart"} className=" relative  text-[23px]">
           <BsCart3 />
+
+          <div class="absolute inline-flex items-center justify-center w-5 h-5 text-[11px]  font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+            {totalQuantity}
+          </div>
         </Link>
 
         <div className="dropdown dropdown-hover">
-          <div tabIndex={0} role="button" className=" bg-[#db4444] rounded-full text-[25px] text-white m-1">
+          <div
+            tabIndex={0}
+            role="button"
+            className=" bg-[#db4444] rounded-full text-[25px] text-white m-1"
+          >
             <CgProfile />
           </div>
           <ul
@@ -67,16 +84,24 @@ const Navbar = () => {
             className=" bgblure backdrop-filter backdrop-blur-[80px]  dropdown-content ml-[-100px] z-[1] menu p-2 shadow text-[#30a692] bg-none  rounded-box w-52"
           >
             <li>
-              <Link className=" hover:bg-[#eaeaea]" to={"/profile"}>Manage My Account</Link>
+              <Link className=" hover:bg-[#eaeaea]" to={"/profile"}>
+                Manage My Account
+              </Link>
             </li>
             <li>
-              <Link className=" hover:bg-[#eaeaea]" to={"/order"}>My Order</Link>
+              <Link className=" hover:bg-[#eaeaea]" to={"/order"}>
+                My Order
+              </Link>
             </li>
             <li>
-              <Link className=" hover:bg-[#eaeaea]" to={"/signup"}>Login</Link>
+              <Link className=" hover:bg-[#eaeaea]" to={"/signup"}>
+                Login
+              </Link>
             </li>
             <li>
-              <Link className=" hover:bg-[#eaeaea]" to={"/signup"}>Sign up</Link>
+              <Link className=" hover:bg-[#eaeaea]" to={"/signup"}>
+                Sign up
+              </Link>
             </li>
           </ul>
         </div>

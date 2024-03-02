@@ -5,8 +5,24 @@ import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import Countdown from "react-countdown";
 import Rating from "./Rating";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../features/cartSlice";
+import {  toast } from 'sonner'
+import { FaMinus } from "react-icons/fa";
 
 const Today = () => {
+
+
+const tost = (title) => {
+  toast.success( `${title} added to cart`);
+}
+
+
+
+  const items = useSelector((state) => state.allCart.item);
+
+  const dispatch = useDispatch();
+
   const Completionist = () => <span>End of the Sale 😒</span>;
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -16,10 +32,27 @@ const Today = () => {
     } else {
       // Render a countdown
       return (
-        <span className=" flex  items-center justify-center"> <span className="  px-3 rounded-full flex-col flex items-center "> <p className="text-[9px]">Days</p> {days}</span> 
-         <span className=" mt-2 text-[#db4444]">:</span> <span className="  px-3 rounded-full flex-col flex items-center "> <p className="text-[9px]">Hours</p> {hours}</span> 
-          <span className="mt-2 text-[#db4444]">:</span> <span className="  px-3 rounded-full flex-col flex items-center "> <p className="text-[9px]">Minutes</p> {minutes}</span> 
-          <span className="mt-2 text-[#db4444]">:</span> <span className="  px-3 rounded-full flex-col flex items-center "> <p className="text-[9px]">Seconds</p> {seconds}</span> 
+        <span className=" flex  items-center justify-center">
+          {" "}
+          <span className="  px-3 rounded-full flex-col flex items-center ">
+            {" "}
+            <p className="text-[9px]">Days</p> {days}
+          </span>
+          <span className=" mt-2 text-[#db4444]">:</span>{" "}
+          <span className="  px-3 rounded-full flex-col flex items-center ">
+            {" "}
+            <p className="text-[9px]">Hours</p> {hours}
+          </span>
+          <span className="mt-2 text-[#db4444]">:</span>{" "}
+          <span className="  px-3 rounded-full flex-col flex items-center ">
+            {" "}
+            <p className="text-[9px]">Minutes</p> {minutes}
+          </span>
+          <span className="mt-2 text-[#db4444]">:</span>{" "}
+          <span className="  px-3 rounded-full flex-col flex items-center ">
+            {" "}
+            <p className="text-[9px]">Seconds</p> {seconds}
+          </span>
         </span>
       );
     }
@@ -42,9 +75,12 @@ const Today = () => {
 
       <div>
         <div className="carousel flex   gap-2 ">
-          {data.map((item) => {
+          {items.map((item) => {
             return (
-              <div key={item.id} className=" group  carousel-item flex gap-2 flex-col  ">
+              <div
+                key={item.id}
+                className=" group  carousel-item flex gap-2 flex-col  "
+              >
                 <div className=" relative">
                   <p className=" absolute  bg-[#db4444] top-4 text-[12px] w-[50px]  z-10 font-semibold text-white px-2 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
                     - {item.discountPercentage} %
@@ -62,18 +98,24 @@ const Today = () => {
                   </div>
                 </div>
 
-                <Link className="  relative overflow-hidden bg-gray-100 rounded-[5px]  " to={"/"}>
+                <Link
+                  className="  relative overflow-hidden bg-gray-100 rounded-[5px]  "
+                  to={"/"}
+                >
                   <img
                     width={200}
                     className="  py-4 px-5 hover:scale-105 duration-300  "
                     src={item.thumbnail}
                     alt=""
                   />
-                <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
-                  <button className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
-                     Add to cart
-                  </button>
-                </div>
+                  <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
+                    <button
+                      onClick={() => dispatch(addToCart(item)) ? tost(item.title) : "" }
+                      className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   "
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </Link>
 
                 <p className=" text-[18px] font-[1000]">{item.title}</p>
@@ -93,116 +135,17 @@ const Today = () => {
       </div>
 
       <div className="  text-center my-[50px]">
-        <Link to={"/"} className="  hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444]  duration-300 bg-[#db4444] px-7 py-2 rounded-[4px] text-white  text-center ">View All Products</Link>
+        <Link
+          to={"/"}
+          className="  hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444]  duration-300 bg-[#db4444] px-7 py-2 rounded-[4px] text-white  text-center "
+        >
+          View All Products
+        </Link>
       </div>
 
       <div className=" border border-b-1  border-gray-400"></div>
-
     </div>
   );
 };
-
-const data = [
-  {
-    id: 1,
-    title: "Airpods",
-    price: 14999,
-    discountPercentage: 12,
-    rating: 4.6,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765151/airpods-32433_ok1ecz.png",
-  },
-  {
-    id: 2,
-    title: "Cannon EOS R5",
-    price: 54999,
-    discountPercentage: 20,
-    rating: 4.01,
-    stock: 94,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765152/136167791_cf95fa0a-16e8-4bad-9ec4-ed3086a9a70a_wmoolp.jpg",
-  },
-  {
-    id: 3,
-    title: "Apple Desktop",
-    price: 59999,
-    discountPercentage: 10,
-    rating: 4.54,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765152/135017381_3d488c19-24ef-47d0-bb3f-38b913bc1751_tt52ww.jpg",
-  },
-  {
-    id: 4,
-    title: "Mouse Wireless",
-    price: 699,
-    discountPercentage: 40,
-    rating: 3.99,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765152/89206201_A_computer_mouse_with_a_light_-10_wbp6bn.jpg",
-  },
-  {
-    id: 5,
-    title: "Game Controller",
-    price: 4999,
-    discountPercentage: 20,
-    rating: 4.23,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765152/29814582_03june22_game_controller_icon_02_fy9ghg.jpg",
-  },
-  {
-    id: 6,
-    title: "Desktop",
-    price: 15999,
-    discountPercentage: 15,
-    rating: 4.86,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765153/135017980_5383d811-3e38-4990-9a44-5e588aa78d4b_hrymsj.jpg",
-  },
-  {
-    id: 7,
-    title: "Earpods",
-    price: 2549,
-    discountPercentage: 12,
-    rating: 4.66,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765153/30112867_m506t0002_11june22_earpods4_wrykev.jpg",
-  },
-  {
-    id: 8,
-    title: "Table Fan",
-    price: 3549,
-    discountPercentage: 35,
-    rating: 4.99,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765153/136167044_aa7482c0-6afb-49bc-ba7f-3bc33b7a9539_yd8mjh.jpg",
-  },
-  {
-    id: 10,
-    title: "Computer Mouse",
-    price: 549,
-    discountPercentage: 50,
-    rating: 4.06,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765154/91629060_Computer_Mouse_-8_zzbhoy.jpg",
-  },
-  {
-    id: 11,
-    title: "Gaming Headphone",
-    price: 2699,
-    discountPercentage: 36,
-    rating: 4.77,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765154/83005392_Beautiful_gaming_headphone_-8_1_pss9j8.jpg",
-  },
-  {
-    id: 12,
-    title: "Gaming Headphone Z2",
-    price: 3599,
-    discountPercentage: 8,
-    rating: 4.89,
-    thumbnail:
-      "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765154/83005373_Beautiful_gaming_headphone_-5_ftj40l.jpg",
-  },
-];
 
 export default Today;
