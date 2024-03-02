@@ -6,7 +6,8 @@ import Login from "./page/Login";
 import Signup from "./page/Signup";
 import Wishlist from "./page/Wishlist";
 import Cart from "./page/Cart";
-import { Toaster, toast } from 'sonner'
+import { Toaster} from 'sonner'
+import NoItemCart from "./components/NoItemCart";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/item" element={<NoItemCart />} />
       </Routes>
       <Footer />
     </div>

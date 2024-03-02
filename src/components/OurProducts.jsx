@@ -3,9 +3,29 @@ import { Link } from 'react-router-dom';
 import Rating from './Rating';
 import { GoHeart } from "react-icons/go";
 import { IoEyeOutline } from "react-icons/io5";
-import { data } from './productData';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'sonner';
+import { addToCart } from '../features/cartSlice';
+import { addToWishlist } from '../features/wishlistSlice';
 
 const OurProducts = () => {
+  
+  const items = useSelector((state) => state.allCart.item);
+
+
+  const dispatch = useDispatch();
+
+  const tostCart = (title) => {
+    toast.success(`${title} added to cart`);
+  };
+  const tostWishlist = (title ) => {
+    
+    toast.success(`${title} added to Wishlist `)
+   
+  };
+
+ 
+
   return (
     <div>
       <div className=" mt-20 flex flex-col gap-4">
@@ -21,7 +41,7 @@ const OurProducts = () => {
 
       <div>
         <div className="carousel flex   gap-2 ">
-          {data.map((item) => {
+          {items.map((item) => {
             return (
               <div key={item.id} className=" group  carousel-item flex gap-2 flex-col  ">
                 {/* <div className=" relative">
@@ -32,7 +52,7 @@ const OurProducts = () => {
 
                 <div className=" relative">
                   <div className=" group-hover:z-10 duration-900 text-[15px] gap-2  absolute right-2 top-3 -z-10 flex flex-col">
-                    <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
+                    <Link onClick={() => dispatch(addToWishlist(item)) ? tostWishlist(item.title ) : "" } className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
                       <GoHeart />
                     </Link>
                     <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
@@ -49,7 +69,7 @@ const OurProducts = () => {
                     alt=""
                   />
                   <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
-                  <button className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
+                  <button onClick={() => dispatch(addToCart(item)) ? tostCart(item.title) : "" } className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
                      Add to cart
                   </button>
                 </div>
@@ -70,7 +90,7 @@ const OurProducts = () => {
           })}
         </div>
         <div className="carousel mt-[50px] flex   gap-2 ">
-          {data.map((item) => {
+          {items.map((item) => {
             return (
               <div key={item.id} className=" group  carousel-item flex gap-2 flex-col  ">
                   <div className=" relative">
@@ -84,7 +104,7 @@ const OurProducts = () => {
 
                 <div className=" relative">
                   <div className=" group-hover:z-10 duration-900 text-[15px] gap-2  absolute right-2 top-3 -z-10 flex flex-col">
-                    <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
+                    <Link onClick={() => dispatch(addToWishlist(item)) ? tostWishlist(item.title) : "" } className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
                       <GoHeart />
                     </Link>
                     <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
@@ -101,7 +121,7 @@ const OurProducts = () => {
                     alt=""
                   />
                   <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
-                  <button className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
+                  <button onClick={() => dispatch(addToCart(item)) ? tostCart(item.title) : "" } className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
                      Add to cart
                   </button>
                 </div>

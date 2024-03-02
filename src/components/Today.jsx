@@ -8,15 +8,17 @@ import Rating from "./Rating";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
 import {  toast } from 'sonner'
-import { FaMinus } from "react-icons/fa";
+import { addToWishlist } from "../features/wishlistSlice";
 
 const Today = () => {
 
 
-const tost = (title) => {
-  toast.success( `${title} added to cart`);
-}
-
+  const tostCart = (title) => {
+    toast.success(`${title} added to cart`);
+  };
+  const tostWishlist = (title) => {
+    toast.success(`${title} added to Wishlist `);
+  };
 
 
   const items = useSelector((state) => state.allCart.item);
@@ -89,7 +91,7 @@ const tost = (title) => {
 
                 <div className=" relative">
                   <div className=" group-hover:z-10 duration-900 text-[15px] gap-2  absolute right-2 top-3 -z-10 flex flex-col">
-                    <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
+                    <Link onClick={() => dispatch(addToWishlist(item)) ? tostWishlist(item.title) : "" } className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
                       <GoHeart />
                     </Link>
                     <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
@@ -110,7 +112,7 @@ const tost = (title) => {
                   />
                   <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
                     <button
-                      onClick={() => dispatch(addToCart(item)) ? tost(item.title) : "" }
+                      onClick={() => dispatch(addToCart(item)) ? tostCart(item.title) : "" }
                       className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   "
                     >
                       Add to cart

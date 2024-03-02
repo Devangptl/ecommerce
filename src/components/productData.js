@@ -5,6 +5,7 @@ export const data = [
       price: 14999,
       discountPercentage: 12,
       rating: 4.6,
+      thisMonth : true,
       quantity : 1,
       thumbnail:
         "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765151/airpods-32433_ok1ecz.png",
@@ -14,6 +15,7 @@ export const data = [
       title: "Cannon EOS R5",
       price: 54999,
       discountPercentage: 20,
+      thisMonth : true,
       rating: 4.01,
       stock: 94,
       quantity : 1,
@@ -25,6 +27,7 @@ export const data = [
       title: "Apple Desktop",
       price: 59999,
       discountPercentage: 10,
+      thisMonth : true,
       rating: 4.54,
       quantity : 1,
       thumbnail:
@@ -35,6 +38,7 @@ export const data = [
       title: "Mouse Wireless",
       price: 699,
       discountPercentage: 40,
+      thisMonth : true,
       rating: 3.99,
       quantity : 1,
       thumbnail:
@@ -55,6 +59,7 @@ export const data = [
       title: "Desktop",
       price: 15999,
       discountPercentage: 15,
+      thisMonth : true,
       rating: 4.86,
       quantity : 1,
       thumbnail:

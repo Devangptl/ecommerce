@@ -9,6 +9,9 @@ import { getCartTotal } from "../features/cartSlice";
 
 const Navbar = () => {
   const { cart, totalQuantity } = useSelector((state) => state.allCart);
+  const { wishlist } = useSelector(
+    (state) => state.allWishlist
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -59,14 +62,17 @@ const Navbar = () => {
           </button>
         </div>
 
-        <Link to={"/wishlist"} className=" pl-3 text-[24px]">
+        <Link to={"/wishlist"} className=" relative pl-3 text-[24px]">
           <GoHeart className=" hover:text-[#ac2121] " />
+          <div className="absolute inline-flex items-center justify-center w-5 h-5 text-[11px]  font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+            {wishlist.length}
+          </div>
         </Link>
 
         <Link to={"/cart"} className=" relative  text-[23px]">
           <BsCart3 />
 
-          <div class="absolute inline-flex items-center justify-center w-5 h-5 text-[11px]  font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+          <div className="absolute inline-flex items-center justify-center w-5 h-5 text-[11px]  font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
             {totalQuantity}
           </div>
         </Link>
