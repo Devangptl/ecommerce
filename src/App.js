@@ -8,6 +8,7 @@ import Wishlist from "./page/Wishlist";
 import Cart from "./page/Cart";
 import { Toaster} from 'sonner'
 import NoItemCart from "./components/NoItemCart";
+import ProductDetail from "./page/ProductDetail";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/item" element={<NoItemCart />} />
+        <Route path="/productdetail" element={<ProductDetail />} />
       </Routes>
       <Footer />
     </div>
