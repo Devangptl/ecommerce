@@ -1,7 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Rating from "../components/Rating";
+import { useParams } from "react-router-dom";
+import { data } from "../components/productData";
 
 const ProductDetail = () => {
+
+  const [oneData , setOneData] = useState([])
+
+  const {id} = useParams()
+  
+const  getProductDetails = async (id) =>{
+  data.map((item)=>{
+    if(item.id == id){
+      setOneData(item);
+    }
+  })
+}
+
+console.log(oneData)
+
+useEffect(()=>{
+  getProductDetails(id)
+},[])
+
   const [rotate, setRotate] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -23,21 +44,21 @@ const ProductDetail = () => {
         <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
           {/* <p className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600">Home / Furniture / Wooden Stool</p> */}
           <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">
-            {data.title}
+            {oneData.title}
           </h2>
 
           <div className=" flex flex-row justify-between  mt-5">
-            <Rating rating={data.rating} />
+            <Rating rating={oneData.rating} />
             <p className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800 duration-100 cursor-pointer">
-              {data.review} reviews
+              {oneData.review} reviews
             </p>
           </div>
 
           <p className=" font-normal text-base leading-6 text-gray-600 mt-7">
-            {data.description}
+            {oneData.description}
           </p>
           <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-            ₹{data.price}
+            ₹{oneData.price}
           </p>
 
           <div className="lg:mt-11 mt-10">
@@ -82,7 +103,7 @@ const ProductDetail = () => {
             <img
             
               className="hover:scale-110 duration-300 "
-              src={data.thumbnail}
+              src={oneData.thumbnail}
               alt="Wooden Chair Previw"
             />
           </div>
@@ -90,21 +111,21 @@ const ProductDetail = () => {
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={data.thumbnail}
+                src={oneData.thumbnail}
                 alt="Wooden chair - preview 1"
               />
             </div>
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={data.thumbnail}
+                src={oneData.thumbnail}
                 alt="Wooden chair - preview 2"
               />
             </div>
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={data.thumbnail}
+                src={oneData.thumbnail}
                 alt="Wooden chair- preview 3"
               />
             </div>
@@ -301,19 +322,19 @@ const ProductDetail = () => {
   );
 };
 
-const data = {
-  id: 1,
-  title: "Airpods",
-  price: 14999,
-  discountPercentage: 12,
-  rating: 4.6,
-  review: 25,
-  description:
-    "Spatial audio with dynamic head tracking places sound all around you Adaptive EQ automatically tunes music to your ears All-new contoured desig  Force sensor lets you easily control your entertainment, answer or end calls, and more Sweat and water resistant",
-  thisMonth: true,
-  quantity: 1,
-  thumbnail:
-    "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765151/airpods-32433_ok1ecz.png",
-};
+// const data = {
+//   id: 1,
+//   title: "Airpods",
+//   price: 14999,
+//   discountPercentage: 12,
+//   rating: 4.6,
+//   review: 25,
+//   description:
+//     "Spatial audio with dynamic head tracking places sound all around you Adaptive EQ automatically tunes music to your ears All-new contoured desig  Force sensor lets you easily control your entertainment, answer or end calls, and more Sweat and water resistant",
+//   thisMonth: true,
+//   quantity: 1,
+//   thumbnail:
+//     "https://res.cloudinary.com/dlmg58jtr/image/upload/v1708765151/airpods-32433_ok1ecz.png",
+// };
 
 export default ProductDetail;
