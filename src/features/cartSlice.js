@@ -41,10 +41,13 @@ export const cartslice = createSlice({
         state.totalPrice = parseInt(totalPrice.toFixed(2))
         state.totalQuantity = totalQuantity
       }
+
       ,
 
       removerItem :  (state, action) =>{
         state.cart = state.cart.filter((item)=> item.id !== action.payload)
+
+      
       },
 
       increaseItemQuantity : (state , action) =>{

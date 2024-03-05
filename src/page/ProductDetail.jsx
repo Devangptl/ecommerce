@@ -2,26 +2,38 @@ import React, { useEffect, useState } from "react";
 import Rating from "../components/Rating";
 import { useParams } from "react-router-dom";
 import { data } from "../components/productData";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cartSlice";
 
 const ProductDetail = () => {
 
-  const [oneData , setOneData] = useState([])
+  const dispatch = useDispatch()
+
+  // const [oneData , setOneData] = useState([])
+
+  // const [num , setNum] = useState([])
 
   const {id} = useParams()
   
-const  getProductDetails = async (id) =>{
-  data.map((item)=>{
-    if(item.id == id){
-      setOneData(item);
-    }
-  })
-}
+// const  getProductDetails = async (id) =>{
+//   data.map((item)=>{
+//     if(item.id == id){
+//       setOneData(item);
+//     }
+//   })
+// }
 
-console.log(oneData)
+const allData = data.find((item) => item.id == id)
 
-useEffect(()=>{
-  getProductDetails(id)
-},[])
+
+
+
+// console.log(oneData)
+
+// useEffect(()=>{
+//   getProductDetails(id)
+//   // allData
+// },[])
 
   const [rotate, setRotate] = useState(false);
   const [count, setCount] = useState(0);
@@ -44,21 +56,21 @@ useEffect(()=>{
         <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
           {/* <p className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600">Home / Furniture / Wooden Stool</p> */}
           <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">
-            {oneData.title}
+            {allData.title}
           </h2>
 
           <div className=" flex flex-row justify-between  mt-5">
-            <Rating rating={oneData.rating} />
+            <Rating rating={allData.rating} />
             <p className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800 duration-100 cursor-pointer">
-              {oneData.review} reviews
+              {allData.review} reviews
             </p>
           </div>
 
           <p className=" font-normal text-base leading-6 text-gray-600 mt-7">
-            {oneData.description}
+            {allData.description}
           </p>
           <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-            ₹{oneData.price}
+            ₹{allData.price}
           </p>
 
           <div className="lg:mt-11 mt-10">
@@ -91,7 +103,7 @@ useEffect(()=>{
             </div>
           </div>
 
-          <button className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
+          <button onClick={()=>dispatch(addToCart(allData))} className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
             Add to Cart
           </button>
         </div>
@@ -103,7 +115,7 @@ useEffect(()=>{
             <img
             
               className="hover:scale-110 duration-300 "
-              src={oneData.thumbnail}
+              src={allData.thumbnail}
               alt="Wooden Chair Previw"
             />
           </div>
@@ -111,21 +123,21 @@ useEffect(()=>{
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={oneData.thumbnail}
+                src={allData.thumbnail}
                 alt="Wooden chair - preview 1"
               />
             </div>
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={oneData.thumbnail}
+                src={allData.thumbnail}
                 alt="Wooden chair - preview 2"
               />
             </div>
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={oneData.thumbnail}
+                src={allData.thumbnail}
                 alt="Wooden chair- preview 3"
               />
             </div>
