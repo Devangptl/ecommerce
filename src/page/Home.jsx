@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Today from '../components/Today'
 import Categories from '../components/Categories'
@@ -11,27 +11,32 @@ import { fetchDataFromApi } from '../utils/api'
 
 const Home = () => {
 
+  const [data, setData] = useState([])
+
   const getProducts = () => {
     fetchDataFromApi("/api/products?populate=*").then((res) => {
         // setProducts(res);
-        console.log(res);
+        // console.log(res);
+        setData(res.data)
     });
 };
 
+// console.log(data);
+
   useEffect(()=>{
     getProducts()
-  })
+  },[])
 
   return (
     <div className=' mt-[67px]'>
       <Header/>
       <div className=' px-[10%]'>
-      <Today/>
+      <Today data={data}/>
       <Categories/>
-      <ThisMonth/>
+      <ThisMonth data={data}/>
       <Offer/>
-      <OurProducts/>
-      <NewArrival/>
+      <OurProducts data={data} />
+      <NewArrival data={data} />
       <Support/>
       </div>
     </div>
