@@ -5,8 +5,12 @@ import { BsSmartwatch } from "react-icons/bs";
 import { IoCameraOutline } from "react-icons/io5";
 import { GiHeadphones } from "react-icons/gi";
 import { MdSportsEsports } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
+
+  
+
   return (
     <div>
       <div className=" mt-20 flex flex-col gap-4">
@@ -25,8 +29,10 @@ const Categories = () => {
           {category.map((item) => {
             return (
               <div key={item.id} className=" font-normal hover:bg-[#db4444] hover:text-white cursor-pointer duration-500 flex flex-col gap-2 items-center justify-center rounded-[4px] border border-gray-300 w-full h-full  py-6">
+                <Link to={`category/${item.name}`}>
                 <p className="  text-[45px]">{item.icon} </p>
                 <p className=" text-[15px]">{item.name} </p>
+              </Link>
               </div>
             );
           })}

@@ -7,12 +7,11 @@ import Countdown from "react-countdown";
 import Rating from "./Rating";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
-import {  toast } from 'sonner'
+import { toast } from "sonner";
 import { addToWishlist } from "../features/wishlistSlice";
 
-const Today = ({data}) => {
-
-  console.log(data);
+const Today = ({ data }) => {
+  // console.log(data);
 
   const tostCart = (title) => {
     toast.success(`${title} added to cart`);
@@ -20,7 +19,6 @@ const Today = ({data}) => {
   const tostWishlist = (title) => {
     toast.success(`${title} added to Wishlist `);
   };
-
 
   const items = useSelector((state) => state.allCart.item);
 
@@ -79,88 +77,103 @@ const Today = ({data}) => {
       <div>
         <div className="carousel flex   gap-2 ">
           {data?.map((item) => {
+            if (item.attributes.isNew === true) {
+              return (
+                <div
+                  key={item.attributes.id}
+                  className=" group  carousel-item flex gap-2 flex-col  "
+                >
+                  <div className=" relative">
+                    <p className=" absolute  bg-[#db4444] top-4 text-[12px] w-[50px]  z-10 font-semibold text-white px-2 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
+                      - {item.attributes.discount} %
+                    </p>
+                  </div>
 
-            console.log(item.attributes.isNew);
+                  <div className=" relative">
+                    <div className=" group-hover:z-10 duration-900 text-[15px] gap-2  absolute right-2 top-3 -z-10 flex flex-col">
+                      <Link
+                        onClick={() =>
+                          dispatch(addToWishlist(item))
+                            ? tostWishlist(item.title)
+                            : ""
+                        }
+                        className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2"
+                      >
+                        <GoHeart />
+                      </Link>
+                      <Link
+                        to={`/productdetail/${item.id}`}
+                        className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2"
+                      >
+                        <IoEyeOutline />
+                      </Link>
+                    </div>
+                  </div>
 
-if(item.attributes.isNew === true){
+                  <Link
+                    className=" h-[215px] w-[250px]  relative overflow-hidden bg-gray-100 rounded-[5px]  "
+                    to={"/"}
+                  >
+                    <img
+                      className="h-[200px] w-[200px] m-auto p-3  hover:scale-105 duration-300  "
+                      src={
+                        process.env.REACT_APP_STRIPE_UP_URL +
+                        item.attributes.image.data[0].attributes.url
+                      }
+                      alt=""
+                    />
+                    <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
+                      <button
+                        onClick={() =>
+                          dispatch(addToCart(item.attributes))
+                            ? tostCart(item.attributes.title)
+                            : ""
+                        }
+                        className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   "
+                      >
+                        Add to cart
+                      </button>
+                    </div>
+                  </Link>
 
-  return (
-    <div
-      key={item.attributes.id}
-      className=" group  carousel-item flex gap-2 flex-col  "
-    >
-      <div className=" relative">
-        <p className=" absolute  bg-[#db4444] top-4 text-[12px] w-[50px]  z-10 font-semibold text-white px-2 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
-          - {item.attributes.discount} %
-        </p>
-      </div>
-  
-      <div className=" relative">
-        <div className=" group-hover:z-10 duration-900 text-[15px] gap-2  absolute right-2 top-3 -z-10 flex flex-col">
-          <Link onClick={() => dispatch(addToWishlist(item)) ? tostWishlist(item.title) : "" } className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
-            <GoHeart />
-          </Link>
-          <Link to={`/productdetail/${item.attributes.id}`} className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
-            <IoEyeOutline />
-          </Link>
-        </div>
-      </div>
-  
-      <Link
-        className=" h-[215px] w-[250px]  relative overflow-hidden bg-gray-100 rounded-[5px]  "
-        to={"/"}
-      >
-        <img
-          
-          className="h-[200px] w-[200px] m-auto p-3  hover:scale-105 duration-300  "
-          src={process.env.REACT_APP_STRIPE_UP_URL + item.attributes.image.data[0].attributes.url}
-          alt=""
-        />
-        <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
-          <button
-            onClick={() => dispatch(addToCart(item.attributes)) ? tostCart(item.attributes.title) : "" }
-            className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   "
-          >
-            Add to cart
-          </button>
-        </div>
-      </Link>
-  
-      <p className="  text-[18px] font-[1000]">{item.attributes.title.slice(0,20)}  {item.attributes.title.length > 20 ? "..." : ""}</p>
-      <div className=" flex items-center gap-3">
-        <p className="text-[#db4444] font-bold">₹ {item.attributes.price}</p>
-        <p className="text-[#929292] font-semibold line-through  ">
-          ₹ {item.attributes.originalPrice}
-        </p>
-      </div>
-      <div className="">
-        <Rating rating={item.attributes.rating} />
-      </div>
-    </div>
-  
-  //           <div className="relative bg-[#b0b0b0]  carousel-item h-[250px] w-[250px] rounded-md">
-  //   <img
-  
-  //     src={process.env.REACT_APP_STRIPE_UP_URL + item.attributes.image.data[0].attributes.url}
-  //     alt="AirMax Pro"
-  //     className="z-0 h-[200px] w-[200px] m-auto rounded-md "
-  //   />
-  //   <div className="absolute inset-0 bg-gradient-to-t rounded-md duration-700 hover:from-gray-900 to-transparent">
-  //   <div className="absolute bottom-4 left-4 text-left">
-  //     <h1 className="text-lg font-semibold text-white">Delba</h1>
-  //     <p className="mt-2 text-sm text-gray-300">
-  //       Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-  //     </p>
-  //     <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
-  //       View Profile &rarr;
-  //     </button>
-  //   </div>
-  //   </div>
-  // </div>
-  
-  );
-}
-            
+                  <p className="  text-[18px] font-[1000]">
+                    {item.attributes.title.slice(0, 20)}{" "}
+                    {item.attributes.title.length > 20 ? "..." : ""}
+                  </p>
+                  <div className=" flex items-center gap-3">
+                    <p className="text-[#db4444] font-bold">
+                      ₹ {item.attributes.price}
+                    </p>
+                    <p className="text-[#929292] font-semibold line-through  ">
+                      ₹ {item.attributes.originalPrice}
+                    </p>
+                  </div>
+                  <div className="">
+                    <Rating rating={item.attributes.rating} />
+                  </div>
+                </div>
+
+                //           <div className="relative bg-[#b0b0b0]  carousel-item h-[250px] w-[250px] rounded-md">
+                //   <img
+
+                //     src={process.env.REACT_APP_STRIPE_UP_URL + item.attributes.image.data[0].attributes.url}
+                //     alt="AirMax Pro"
+                //     className="z-0 h-[200px] w-[200px] m-auto rounded-md "
+                //   />
+                //   <div className="absolute inset-0 bg-gradient-to-t rounded-md duration-700 hover:from-gray-900 to-transparent">
+                //   <div className="absolute bottom-4 left-4 text-left">
+                //     <h1 className="text-lg font-semibold text-white">Delba</h1>
+                //     <p className="mt-2 text-sm text-gray-300">
+                //       Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
+                //     </p>
+                //     <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
+                //       View Profile &rarr;
+                //     </button>
+                //   </div>
+                //   </div>
+                // </div>
+              );
+            }
           })}
         </div>
       </div>

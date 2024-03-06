@@ -13,6 +13,8 @@ const Home = () => {
 
   const [data, setData] = useState([])
 
+  const [category , setCategory] = useState([])
+
   const getProducts = () => {
     fetchDataFromApi("/api/products?populate=*").then((res) => {
         // setProducts(res);
@@ -23,8 +25,15 @@ const Home = () => {
 
 // console.log(data);
 
+const getCategories = () =>{
+  fetchDataFromApi('/api/categories').then((res)=>{
+    console.log(res.data);
+  })
+}
+
   useEffect(()=>{
     getProducts()
+    getCategories()
   },[])
 
   return (

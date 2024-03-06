@@ -8,7 +8,10 @@ import { toast } from 'sonner';
 import { addToCart } from '../features/cartSlice';
 import { addToWishlist } from '../features/wishlistSlice';
 
-const ThisMonth = () => {
+const ThisMonth = ({data}) => {
+
+    //  console.log(data);
+
 
   const items = useSelector((state) => state.allCart.item);
 
@@ -37,20 +40,20 @@ const ThisMonth = () => {
         </div>
 
         <div className=" grid grid-cols-5    gap-3 ">
-          {items?.map((item ) => {
-            if(item.thisMonth === true){
+          {data?.map((item ) => {
+            if(item.attributes.thisMonth === true){
               
               return (
                 <div key={item.id} className=" group flex gap-2 flex-col  ">
                   <div className=" relative">
                     <p className=" absolute  bg-[#db4444] top-4 text-[12px] w-[50px]  z-10 font-semibold text-white px-2 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
-                      - {item.discountPercentage} %
+                      - {item.attributes.discount} %
                     </p>
                   </div>
   
                   <div className=" relative">
                     <div className=" group-hover:z-10 duration-900 text-[15px] gap-2  absolute right-2 top-3 -z-10 flex flex-col">
-                      <Link onClick={() => dispatch(addToWishlist(item)) ? tostWishlist(item.title) : "" } className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
+                      <Link onClick={() => dispatch(addToWishlist(item)) ? tostWishlist(item.attributes.title) : "" } className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
                         <GoHeart />
                       </Link>
                       <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
@@ -63,25 +66,27 @@ const ThisMonth = () => {
                     <img
                       width={300}
                       className="  py-4 px-5 hover:scale-105 duration-300  "
-                      src={item.thumbnail}
+                      src={process.env.REACT_APP_STRIPE_UP_URL +
+                        item.attributes.image.data[0].attributes.url}
                       alt=""
                     />
                     <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
-                    <button onClick={() => dispatch(addToCart(item)) ? tostCart(item.title) : "" } className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
+                    <button onClick={() => dispatch(addToCart(item.attributes)) ? tostCart(item.attributes.title) : "" } className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
                        Add to cart
                     </button>
                   </div>
                   </Link>
   
-                  <p className=" text-[18px] font-[1000]">{item.title}</p>
+                  <p className=" text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}
+                    {item.attributes.title.length > 20 ? "..." : ""}</p>
                   <div className=" flex items-center gap-3">
-                    <p className="text-[#db4444] font-bold">₹ {item.price}</p>
+                    <p className="text-[#db4444] font-bold">₹ {item.attributes.price}</p>
                     <p className="text-[#929292] font-semibold line-through  ">
-                      ₹ {item.price}
+                      ₹ {item.attributes.originalPrice}
                     </p>
                   </div>
                   <div className="">
-                    <Rating rating={item.rating} />
+                    <Rating rating={item.attributes.rating} />
                   </div>
                 </div>
               );
