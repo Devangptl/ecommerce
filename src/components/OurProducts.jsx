@@ -10,7 +10,7 @@ import { addToWishlist } from '../features/wishlistSlice';
 
 const OurProducts = ({data}) => {
   
-  // console.log(data);
+
 
   const items = useSelector((state) => state.allCart.item);
 
@@ -43,7 +43,7 @@ const OurProducts = ({data}) => {
 
       <div>
         <div className=" grid grid-cols-5   gap-3">
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               <div key={item.id} className=" group  py-2  flex gap-2 flex-col  ">
                 {/* <div className=" relative">

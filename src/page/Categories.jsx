@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchDataFromApi } from "../utils/api";
+import SubCategory from "../components/SubCategory";
 
 const Categories = ({data}) => {
 
@@ -10,21 +10,33 @@ const Categories = ({data}) => {
 
 //   console.log(data);
 
+useEffect(()=>{
 
-  const items =(title) =>  data.find((itemss) =>  itemss.attributes.categories.data.map((i)=> i.attributes.title == title )=== true ? setCategoryItem(itemss) : " " );
-
-  console.log(categoryItem);
-
-
- 
-
-  useEffect(() => {
-    items(title)
-  }, []);
+  const items =  data.filter((itemss) =>  itemss.attributes.categories.data.find((i)=> i.attributes.title === title ));
+  
+  
+  setCategoryItem(items)
+  
+},[])
 
 
 
-  return <div></div>;
+  return <div >
+
+    <div className=" mt-[100px] ">
+
+    <SubCategory data={data} title={title} />
+  
+  {
+    categoryItem.map((item)=>(
+
+      // console.log(item.attributes.title);
+      
+      <p className="  ">{item.attributes.title}</p>
+    ))
+  }
+  </div>
+  </div>;
 };
 
 export default Categories;

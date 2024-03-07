@@ -10,41 +10,31 @@ import { Toaster} from 'sonner'
 import NoItemCart from "./components/NoItemCart";
 import ProductDetail from "./page/ProductDetail";
 import Categories from "./page/Categories";
-import { fetchDataFromApi } from "./utils/api";
-import { useEffect, useState } from "react";
+import useFetch from "./hooks/useFetch";
 
 function App() {
 
-  const [data, setData] = useState([]);
-
-
-  // console.log(data);
-
-  const getProducts = () => {
-    fetchDataFromApi("/api/products?populate=*").then((res) => {
-      // setProducts(res);
-      // console.log(res);
-      setData(res.data);
-    });
-  };
 
   
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const {data} = useFetch('/api/products?populate=*')
+
+  console.log(data);
+
+
+
 
   return (
     <div>
       <Navbar />
       <Toaster position="top-center"  richColors />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home data={data} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/item" element={<NoItemCart />} />
-        <Route path="/productdetail/:id" element={<ProductDetail />} />
+        <Route path="/productdetail/:id" element={<ProductDetail data={data} />} />
         <Route path="/category/:title"  element={<Categories data={data} />} />
       </Routes>
       <Footer />
