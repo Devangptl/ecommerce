@@ -11,7 +11,9 @@ const Footer = () => {
     <div className="px-[10%]  text-white bg-black">
       <div className=" py-10 grid grid-cols-5 ">
         <div className=" flex flex-col gap-2">
-          <p className="text-[22px] font-bold ">Gada Electronics</p>
+          <Link to={"/"} className="  text-[22px] font-bold ">
+            <img width={150} className=" " src="https://res.cloudinary.com/dlmg58jtr/image/upload/v1709988987/1709906423917_bvbkbk.png" alt="" />
+          </Link>
           <p className=" text-[19px] font-bold">Subscribe</p>
           <p className=" text-[14px]">Get 10% off your first order</p>
           <div className=" mt-[-3px] flex flex-row items-center ">

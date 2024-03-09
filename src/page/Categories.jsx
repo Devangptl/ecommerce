@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SubCategory from "../components/SubCategory";
+import useFetch from "../hooks/useFetch";
 
-const Categories = ({data}) => {
+const Categories = () => {
 
-  const [categoryItem, setCategoryItem] = useState([]);
+  const { id , title } = useParams();
 
-  const { title } = useParams();
 
-//   console.log(data);
-
-useEffect(()=>{
-
-  const items =  data.filter((itemss) =>  itemss.attributes.categories.data.find((i)=> i.attributes.title === title ));
+  const {data} = useFetch(`/api/products?populate=*&[filters][categories][id]=${id}`)
   
-  
-  setCategoryItem(items)
-  
-},[])
+//  console.log(data);
+
+// const {sub_data} = useFetch('/api/sub-categories')
+// console.log(title);
 
 
 
@@ -25,14 +21,14 @@ useEffect(()=>{
 
     <div className=" mt-[100px] ">
 
-    <SubCategory data={data} title={title} />
+    <SubCategory title={title} dataC={data}  id={id} />
   
   {
-    categoryItem.map((item)=>(
+    data?.map((item)=>(
 
       // console.log(item.attributes.title);
       
-      <p className="  ">{item.attributes.title}</p>
+      <p key={item.id}  className="  ">{item.attributes.title}</p>
     ))
   }
   </div>

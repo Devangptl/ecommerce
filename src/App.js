@@ -15,11 +15,7 @@ import useFetch from "./hooks/useFetch";
 function App() {
 
 
-  
   const {data} = useFetch('/api/products?populate=*')
-
-  console.log(data);
-
 
 
 
@@ -35,7 +31,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/item" element={<NoItemCart />} />
         <Route path="/productdetail/:id" element={<ProductDetail data={data} />} />
-        <Route path="/category/:title"  element={<Categories data={data} />} />
+        <Route path="/:title/:id"  element={<Categories data={data} />} />
       </Routes>
       <Footer />
     </div>

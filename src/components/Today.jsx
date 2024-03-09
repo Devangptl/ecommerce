@@ -80,7 +80,7 @@ const Today = ({ data }) => {
             if (item.attributes.isNew === true) {
               return (
                 <div
-                  key={item.attributes.id}
+                  key={item.id}
                   className=" group  carousel-item flex gap-2 flex-col  "
                 >
                   <div className=" relative">

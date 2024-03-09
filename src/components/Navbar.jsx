@@ -20,7 +20,12 @@ const Navbar = () => {
 
   return (
     <div className=" fixed top-0 z-20 w-full bg-white border border-b-2 py-5  flex flex-row justify-around items-center">
-      <div className="  text-[24px] font-bold"> Gada Electronics</div>
+      <Link to={"/"} className=" ">
+
+      <img width={150} className="" src="https://res.cloudinary.com/dlmg58jtr/image/upload/v1709988790/1709906423917_qjqayk.png" alt="" />
+      </Link>
+       
+      
 
       <div className=" tracking-wide text-[#3c3c3c] text-lg   flex flex-row items-center gap-9">
         <Link
