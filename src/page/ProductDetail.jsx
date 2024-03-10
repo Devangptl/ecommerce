@@ -3,18 +3,21 @@ import Rating from "../components/Rating";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
+import useFetch from "../hooks/useFetch";
 
-const ProductDetail = ({data}) => {
+const ProductDetail = () => {
+
+  // const [product , setProduct] = useState([])
 
   const dispatch = useDispatch()
 
   const {id} = useParams()
-  
 
+    const  {data}  = useFetch(`/api/products?populate=*&[filters][id]=${id}`)
 
-const allData = data?.find((item) => item.id == id)
-
-console.log(allData);
+    
+    const product = data?.[0]?.attributes;
+    // console.log(product);
 
 
 
@@ -32,6 +35,8 @@ console.log(allData);
   };
 
   return (
+
+    
     <div className="2xl:container mt-[3%] 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 ">
       <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
         {/* <!-- Description Div --> */}
@@ -39,21 +44,21 @@ console.log(allData);
         <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
           {/* <p className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600">Home / Furniture / Wooden Stool</p> */}
           <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">
-            {allData?.attributes.title}
+            {product?.title}
           </h2>
 
           <div className=" flex flex-row justify-between  mt-5">
-            <Rating rating={allData.attributes.rating} />
+            <Rating rating={product?.rating} />
             <p className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800 duration-100 cursor-pointer">
-              {allData?.attributes.review} reviews
+              {product?.review} reviews
             </p>
           </div>
 
           <p className=" font-normal text-base leading-6 text-gray-600 mt-7">
-            {allData?.attributes.description}
+            {product?.description}
           </p>
           <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-            ₹{allData?.attributes.price}
+            ₹{product?.price}.00
           </p>
 
           <div className="lg:mt-11 mt-10">
@@ -86,7 +91,7 @@ console.log(allData);
             </div>
           </div>
 
-          <button onClick={()=>dispatch(addToCart(allData?.attributes))} className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
+          <button onClick={()=>dispatch(addToCart(product))} className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
             Add to Cart
           </button>
         </div>
@@ -98,7 +103,8 @@ console.log(allData);
             <img
             
               className="hover:scale-110 duration-300 "
-              src={allData.thumbnail}
+              src={process.env.REACT_APP_STRIPE_UP_URL +
+                product?.image?.data?.[0].attributes?.url}
               alt="Wooden Chair Previw"
             />
           </div>
@@ -106,21 +112,24 @@ console.log(allData);
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={allData.thumbnail}
+                src={process.env.REACT_APP_STRIPE_UP_URL +
+                  product?.image?.data?.[0].attributes?.url}
                 alt="Wooden chair - preview 1"
               />
             </div>
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={allData.thumbnail}
+                src={process.env.REACT_APP_STRIPE_UP_URL +
+                  product?.image?.data?.[0].attributes?.url}
                 alt="Wooden chair - preview 2"
               />
             </div>
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
-                src={allData.thumbnail}
+                src={process.env.REACT_APP_STRIPE_UP_URL +
+                  product?.image?.data?.[0].attributes?.url}
                 alt="Wooden chair- preview 3"
               />
             </div>

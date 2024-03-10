@@ -94,7 +94,7 @@ const Today = ({ data }) => {
                       <Link
                         onClick={() =>
                           dispatch(addToWishlist(item))
-                            ? tostWishlist(item.title)
+                            ? tostWishlist(item.attributes.title)
                             : ""
                         }
                         className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2"
@@ -125,7 +125,7 @@ const Today = ({ data }) => {
                     <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
                       <button
                         onClick={() =>
-                          dispatch(addToCart(item.attributes))
+                          dispatch(addToCart(item))
                             ? tostCart(item.attributes.title)
                             : ""
                         }

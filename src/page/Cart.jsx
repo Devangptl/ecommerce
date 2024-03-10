@@ -62,23 +62,24 @@ const Cart = () => {
                         <div className="flex items-center gap-3">
                           <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                              <img src={item.thumbnail} alt="" />
+                              <img src={process.env.REACT_APP_STRIPE_UP_URL +
+                        item.attributes.image.data[0].attributes.url} alt="" />
                             </div>
                           </div>
                           <div>
-                            <div className="font-bold">{item.title}</div>
+                            <div className="font-bold">{item.attributes.title}</div>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p className="">{item.price}</p>
+                        <p className="">{item.attributes.price}</p>
                       </td>
                       <td className="  font-bold">
                         <div className=" flex gap-2 items-center ">
                           {" "}
                           <p
                             onClick={
-                              item.quantity === 1
+                              item.attributes.quantity === 1
                                 ? () => dispatch(removerItem(item.id))
                                 : () => dispatch(decreaseItemQuantity(item.id))
                             }
@@ -88,7 +89,7 @@ const Cart = () => {
                             <FaMinus />{" "}
                           </p>
                           <p className=" border  px-3 py-1 rounded-md font-bold  ">
-                            {item.quantity}
+                            {item.attributes.quantity}
                           </p>
                           <p
                             onClick={() =>
@@ -102,14 +103,14 @@ const Cart = () => {
                       </td>
                       <th>
                         <p className="btn btn-ghost btn-xs">
-                          {item.price * item.quantity}
+                          {item.attributes.price * item.attributes.quantity}
                         </p>
                       </th>
                       <th>
                         <button
                           onClick={() =>
                             dispatch(removerItem(item.id))
-                              ? tost(item.title)
+                              ? tost(item.attributes.title)
                               : ""
                           }
                           className="btn btn-ghost text-red-600 btn-xs"

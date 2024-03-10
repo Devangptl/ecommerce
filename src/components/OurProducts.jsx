@@ -57,7 +57,9 @@ const OurProducts = ({data}) => {
                     <Link onClick={() => dispatch(addToWishlist(item)) ? tostWishlist(item.attributes.title ) : "" } className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
                       <GoHeart />
                     </Link>
-                    <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
+                    <Link 
+                    to={`/productdetail/${item.id}`}
+                     className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
                       <IoEyeOutline />
                     </Link>
                   </div>

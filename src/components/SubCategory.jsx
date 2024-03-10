@@ -12,6 +12,7 @@ console.log(data);
     <div>
       {
     data?.map((item)=>(
+      
 
 
       // console.log(item.attributes.title);
