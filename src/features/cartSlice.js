@@ -14,33 +14,15 @@ export const cartslice = createSlice({
     reducers : {
       addToCart: (state, action) =>{
         let find = state.cart.findIndex((item)=> item.id === action.payload.id)
-
+            console.log(action.payload.attributes);
         if(find >= 0){
-          state.cart[find].quantity +=1;  
+           state.cart[find].attributes.quantity +=1;  
           }else{
             state.cart.push(action.payload);
+            state.cart = [...state.cart ]
         }
       }
-      ,
-
-      getCartTotal : (state)=>{
-        let {totalPrice, totalQuantity} = state.cart.reduce(
-          (cartTotal , cartItem)=>{
-            const {price , quantity} = cartItem
-            const itemTotal = price * quantity
-            cartTotal.totalPrice += itemTotal
-            cartTotal.totalQuantity += quantity
-            return cartTotal
-          },
-          {
-            totalPrice : 0,
-            totalQuantity : 0
-          }
-        )
-
-        state.totalPrice = parseInt(totalPrice.toFixed(2))
-        state.totalQuantity = totalQuantity
-      }
+      
 
       ,
 
@@ -50,31 +32,26 @@ export const cartslice = createSlice({
       
       },
 
-      increaseItemQuantity : (state , action) =>{
+    
+
+      decreaseItemQuantity : (state , action) =>{
         state.cart = state.cart.map((item)=>{
           if(item.id===action.payload){
-            return {...item , quantity : item.quantity + 1};
+            
+            state.cart[0].attributes.quantity -= 1
             
           }
           return item;
         })
       },
 
-      decreaseItemQuantity : (state , action) =>{
-        state.cart = state.cart.map((item)=>{
-          if(item.id===action.payload){
-            return {...item , quantity : item.quantity - 1};
-            
-          }
-
-          
-          return item;
-        })
+      emptycartItem : (state, action)=>{
+        state.cart = []
       }
         
     }
 })
 
-export const {addToCart , getCartTotal ,removerItem , increaseItemQuantity , decreaseItemQuantity} = cartslice.actions
+export const {addToCart  ,removerItem  , decreaseItemQuantity , emptycartItem} = cartslice.actions
 
 export default cartslice.reducer

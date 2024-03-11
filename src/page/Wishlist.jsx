@@ -43,7 +43,7 @@ const Wishlist = () => {
                 <div key={item.id} className=" group flex gap-2 flex-col  ">
                   <div className=" relative">
                     <p className=" absolute  bg-[#db4444] top-4 text-[12px] w-[50px]  z-10 font-semibold text-white px-2 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
-                      - {item.discountPercentage} %
+                      - {item.attributes.discount} %
                     </p>
                   </div>
 
@@ -52,14 +52,14 @@ const Wishlist = () => {
                       <Link
                         onClick={() =>
                           dispatch(removerItem(item.id))
-                            ? tostRemove(item.title)
+                            ? tostRemove(item.attributes.title)
                             : ""
                         }
                         className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2"
                       >
                         <IoHeartDislikeOutline />
                       </Link>
-                      <Link className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
+                      <Link to={`/productdetail/${item.id}`} className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
                         <IoEyeOutline />
                       </Link>
                     </div>
@@ -69,13 +69,14 @@ const Wishlist = () => {
                     <img
                       width={300}
                       className="  py-4 px-5 hover:scale-105 duration-300  "
-                      src={item.thumbnail}
+                      src={process.env.REACT_APP_STRIPE_UP_URL +
+                        item.attributes.image.data[0].attributes.url}
                       alt=""
                     />
                     <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
                       <button
                         onClick={() =>
-                          dispatch(addToCart(item)) ? tostCart(item.title) : ""
+                          dispatch(addToCart(item)) ? tostCart(item.attributes.title) : ""
                         }
                         className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   "
                       >
@@ -84,15 +85,16 @@ const Wishlist = () => {
                     </div>
                   </div>
 
-                  <p className=" text-[18px] font-[1000]">{item.title}</p>
+                  <p className=" text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}{" "}
+                    {item.attributes.title.length > 20 ? "..." : ""}</p>
                   <div className=" flex items-center gap-3">
-                    <p className="text-[#db4444] font-bold">₹ {item.price}</p>
+                    <p className="text-[#db4444] font-bold">₹ {item.attributes.price}</p>
                     <p className="text-[#929292] font-semibold line-through  ">
-                      ₹ {item.price}
+                      ₹ {item.attributes.originalPrice}
                     </p>
                   </div>
                   <div className="">
-                    <Rating rating={item.rating} />
+                    <Rating rating={item.attributes.rating} />
                   </div>
                 </div>
               );

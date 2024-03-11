@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  getCartTotal,
   removerItem,
   decreaseItemQuantity,
-  increaseItemQuantity,
+  addToCart,
 } from "../features/cartSlice";
 import { toast } from "sonner";
 import { FaMinus } from "react-icons/fa";
@@ -14,19 +13,57 @@ import { MdDelete } from "react-icons/md";
 import NoItemCart from "../components/NoItemCart";
 
 const Cart = () => {
+
+  // let [totalPrice , setTotalPrice] = useState(0)
+  const [totalQuantity , setTotalQuantity] = useState(0)
+
   const tost = (title) => {
     toast.success(`${title} Remove to cart`);
   };
 
-  const { cart, totalQuantity, totalPrice } = useSelector(
+  const { cart } = useSelector(
     (state) => state.allCart
   );
 
   const dispatch = useDispatch();
 
+  
+  // const total =()=>{
+  //   let totalprice = 0
+    
+  //   cart?.attributes?.map((item)=>{
+  //     totalPrice = item.price * item.quantity  + totalprice
+  //   })
+   
+  //   setTotalPrice(totalPrice)
+  // }
+
+  const getTotal = () => {
+    let totalPrice = 0
+    cart.forEach(item => {
+      totalPrice += item.attributes.price * item.attributes.quantity
+    })
+    return {totalPrice}
+  }
+
+  // console.log(totalPrice);
+  const totalQun =()=>{
+    var totalQuantity = 0
+    
+    cart.map((item )=>{
+      totalQuantity = item.attributes.quantity  + totalQuantity
+    })
+    
+    setTotalQuantity(totalQuantity)
+  }
+
+  // useEffect(() => {
+  //   total()
+  // }, [total]);
+
   useEffect(() => {
-    dispatch(getCartTotal());
-  }, [cart]);
+    totalQun()
+  }, [totalQun]);
 
   return (
     <div className=" mt-[5%]">
@@ -93,7 +130,7 @@ const Cart = () => {
                           </p>
                           <p
                             onClick={() =>
-                              dispatch(increaseItemQuantity(item.id))
+                              dispatch(addToCart(item))
                             }
                             className=" cursor-pointer text-[13px]  font-normal rounded-md"
                           >
@@ -170,7 +207,7 @@ const Cart = () => {
                     <div className="flex items-center   gap-52 ">
                       <div className="">Subtotal:</div>
                       <div>
-                        <div className="font-bold">{totalPrice}</div>
+                        <div className="font-bold">{getTotal().totalPrice}</div>
                       </div>
                     </div>
                   </td>
@@ -195,7 +232,7 @@ const Cart = () => {
                     <div className="flex items-center   gap-52 ">
                       <div className="">Total:</div>
                       <div>
-                        <div className="font-bold ml-[23px]">{totalPrice}</div>
+                        <div className="font-bold ml-[23px]">{getTotal().totalPrice}</div>
                       </div>
                     </div>
                   </td>

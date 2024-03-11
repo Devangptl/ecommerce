@@ -14,9 +14,6 @@ const Navbar = () => {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCartTotal());
-  }, [cart]);
 
   return (
     <div className=" fixed top-0 z-20 w-full bg-white border border-b-2 py-5  flex flex-row justify-around items-center">
@@ -78,7 +75,7 @@ const Navbar = () => {
           <BsCart3 />
 
           <div className="absolute inline-flex items-center justify-center w-5 h-5 text-[11px]  font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
-            {totalQuantity}
+            {cart.length}
           </div>
         </Link>
 
