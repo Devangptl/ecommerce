@@ -92,8 +92,8 @@ const Navbar = () => {
             className=" bgblure backdrop-filter backdrop-blur-[80px]  dropdown-content ml-[-100px] z-[1] menu p-2 shadow text-[#30a692] bg-none  rounded-box w-52"
           >
             <li>
-              <Link className=" hover:bg-[#eaeaea]" to={"/profile"}>
-                Manage My Account
+              <Link to={"/myaccount"} className=" hover:bg-[#eaeaea]" >
+                My Account
               </Link>
             </li>
             <li>

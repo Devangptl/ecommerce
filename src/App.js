@@ -11,6 +11,9 @@ import NoItemCart from "./components/NoItemCart";
 import ProductDetail from "./page/ProductDetail";
 import Categories from "./page/Categories";
 import useFetch from "./hooks/useFetch";
+import Checkout from "./page/Checkout";
+import Profile from "./page/account/Profile";
+import EditProfile from "./page/account/EditDetails";
 
 function App() {
 
@@ -32,6 +35,11 @@ function App() {
         <Route path="/item" element={<NoItemCart />} />
         <Route path="/productdetail/:id" element={<ProductDetail data={data} />} />
         <Route path="/:title/:id"  element={<Categories data={data} />} />
+        <Route path="/checkout"  element={<Checkout  />} />
+        <Route path="/myaccount"  element={<Profile  />} />
+        <Route path="/editprofile"  element={<EditProfile  />} />
+        
+
       </Routes>
       <Footer />
     </div>

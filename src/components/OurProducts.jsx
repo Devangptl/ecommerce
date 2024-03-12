@@ -76,7 +76,7 @@ const OurProducts = ({data}) => {
                     alt=""
                   />
                   <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
-                  <button onClick={() => dispatch(addToCart(item.attributes)) ? tostCart(item.attributes.title) : "" } className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
+                  <button onClick={() => dispatch(addToCart(item)) ? tostCart(item.attributes.title) : "" } className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
                      Add to cart
                   </button>
                 </div>

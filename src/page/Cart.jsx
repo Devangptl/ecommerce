@@ -109,18 +109,18 @@ const Cart = () => {
                         </div>
                       </td>
                       <td>
-                        <p className="">{item.attributes.price}</p>
+                        <p className="">₹{item.attributes.price}</p>
                       </td>
                       <td className="  font-bold">
                         <div className=" flex gap-2 items-center ">
                           {" "}
                           <p
                             onClick={
-                              item.attributes.quantity === 1
+                              item.attributes.quantity <= 1
                                 ? () => dispatch(removerItem(item.id))
                                 : () => dispatch(decreaseItemQuantity(item.id))
                             }
-                            className=" text-[15px] text-[13px]  cursor-pointer rounded-md font-normal "
+                            className=" text-[15px]   cursor-pointer rounded-md font-normal "
                           >
                             {" "}
                             <FaMinus />{" "}
@@ -139,8 +139,8 @@ const Cart = () => {
                         </div>
                       </td>
                       <th>
-                        <p className="btn btn-ghost btn-xs">
-                          {item.attributes.price * item.attributes.quantity}
+                        <p className="">
+                        ₹{item.attributes.price * item.attributes.quantity}
                         </p>
                       </th>
                       <th>
@@ -241,7 +241,7 @@ const Cart = () => {
 
               <div className=" text-center py-3">
                 <Link
-                  to={"/"}
+                  to={"/checkout"}
                   className=" px-10 py-3  rounded-sm bg-[#db4444] border-[#db4444] border-2  text-white "
                 >
                   Process to checkout
