@@ -29,7 +29,7 @@ function App() {
       <Navbar />
       <Toaster position="top-center"  richColors />
       <Routes>
-        <Route path="/" element={<Home data={data} />} />
+        <Route  path="/" element={<Home data={data} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/wishlist" element={<Wishlist />} />

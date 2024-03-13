@@ -99,13 +99,13 @@ const Cart = () => {
                         <div className="flex items-center gap-3">
                           <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                              <img src={process.env.REACT_APP_STRIPE_UP_URL +
+                              <img className=" hover:scale-105 duration-300 " src={process.env.REACT_APP_STRIPE_UP_URL +
                         item.attributes.image.data[0].attributes.url} alt="" />
                             </div>
                           </div>
-                          <div>
-                            <div className="font-bold">{item.attributes.title}</div>
-                          </div>
+                          <Link to={`/productdetail/${item.id}`}>
+                            <div className=" hover:underline underline-offset-2 duration-300 font-bold">{item.attributes.title}</div>
+                          </Link>
                         </div>
                       </td>
                       <td>

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
-    <div>
-      <div class="flex items-center justify-center  h-screen">
+    <div className='my-[8%]'>
+      <div class="flex items-center justify-center   ">
         <div class=" w-96 flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
           <form >
             <div class="mb-8 flex flex-col items-center justify-center">
@@ -17,7 +17,7 @@ const Login = () => {
                 
                 class="mb-5 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-[#db4444] "
                 type="text"
-                placeholder="Username or Email id"
+                placeholder="Email id"
               />
               <input
                 

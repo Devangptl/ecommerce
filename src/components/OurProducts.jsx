@@ -68,7 +68,7 @@ const OurProducts = ({data}) => {
                 <Link className=" relative overflow-hidden bg-gray-100 rounded-[5px]  " to={"/"}>
                   <img
                     width={200}
-                    className="  py-4 px-5 hover:scale-105 duration-300  "
+                    className="m-auto  py-4 px-5 hover:scale-105 duration-300  "
                     src={
                       process.env.REACT_APP_STRIPE_UP_URL +
                       item.attributes.image.data[0].attributes.url

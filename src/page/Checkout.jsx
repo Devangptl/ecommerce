@@ -38,7 +38,8 @@ const Checkout = () => {
         <p className=" text-[30px] font-bold ">Shipping Details:</p>
         <div className=" my-10  grid grid-cols-2 gap-[100px] ">
           {/* Shipping Details */}
-          <div className=" flex flex-col gap-8  rounded-md">
+          <div className="   flex flex-col gap-8  rounded-md">
+            <div className=" shadow-xl rounded-lg flex flex-col gap-8 py-3 pb-10 px-5">
             <div className=" flex gap-4 justify-between  items-center">
               <div className=" w-full relative">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -118,12 +119,13 @@ const Checkout = () => {
                 Save Shipping Details
               </button>
             </div>
+            </div>
           </div>
 
           {/* cart details      */}
           <div className="">
             <div>
-              <div>
+              <div className=" shadow-xl px-4 rounded-lg py-2 ">
                 {cart.map((item) => {
                   return (
                     <div className=" py-1">
@@ -166,7 +168,7 @@ const Checkout = () => {
 
               <div className=" border-b-2"></div>
 
-              <div className=" flex items-center justify-between py-3">
+              <div className="  flex items-center justify-between py-3">
                 <p className=" text-[20px] font-bold">Shipping: </p>
                 <p className="text-[20px] text-[green] font-bold">Free</p>
               </div>
