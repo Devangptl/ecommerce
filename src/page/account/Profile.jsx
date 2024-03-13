@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import EditProfile from "./EditDetails";
+import MyProfile from "./MyProfile";
 
 
 const RenderCompo = ({index})=>{
     switch (index) {
-      case 0: return <p>Devang</p>
+      case 0: return <MyProfile/>
         break;
       case 1: return <EditProfile/>
         break;
@@ -40,7 +41,7 @@ const Profile = () => {
 
         <div className="  grid grid-cols-5">
           <div className=" flex flex-col justify-start items-center gap-3 text-[18px] col-span-2">
-            <button onClick={()=>setIsSelect(0)}  className={`${isSelect == 1 ? "" : "text-[#db4444]"}`} >My Profile</button>
+            <button onClick={()=>setIsSelect(0)}  className={`${isSelect == 1 ? "" : "text-[#db4444]"} text-[18.5px] `} >My Profile</button>
             <button onClick={()=>setIsSelect(1)}  className={`${isSelect == 0 ? "" : "text-[#db4444]"}`}>Edit Profile</button>
           </div>
           <div className=" col-span-3">

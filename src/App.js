@@ -14,6 +14,8 @@ import useFetch from "./hooks/useFetch";
 import Checkout from "./page/Checkout";
 import Profile from "./page/account/Profile";
 import EditProfile from "./page/account/EditDetails";
+import About from "./page/About";
+import Contact from "./page/Contact";
 
 function App() {
 
@@ -37,7 +39,8 @@ function App() {
         <Route path="/:title/:id"  element={<Categories data={data} />} />
         <Route path="/checkout"  element={<Checkout  />} />
         <Route path="/myaccount"  element={<Profile  />} />
-        <Route path="/editprofile"  element={<EditProfile  />} />
+        <Route path="/about"  element={<About  />} />
+        <Route path="/contact"  element={<Contact  />} />
         
 
       </Routes>

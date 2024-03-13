@@ -10,8 +10,8 @@ import { RiLockPasswordLine } from "react-icons/ri";
 
 const EditProfile = () => {
   return (
-    <div>
-      <div className=" flex flex-col gap-8 mb-9 rounded-md">
+    <div className=' shadow-xl rounded-lg  '>
+      <div className=" py-8 px-4 flex flex-col gap-8 mb-9 rounded-md">
             <div className=" flex gap-4 justify-between  items-center">
               <div className=" w-full relative">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -42,7 +42,7 @@ const EditProfile = () => {
                 <input
                   type="text"
                   className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10 p-2.5  "
-                  placeholder="First Name"
+                  placeholder="Email"
                 />
               </div>
               <div className="relative w-full ">
