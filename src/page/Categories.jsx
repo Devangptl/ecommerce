@@ -15,7 +15,7 @@ const Categories = () => {
   const { id , title } = useParams();
 
 
-  const {data} = useFetch(`/api/products?populate=*&[filters][categories][id]=${id}`)
+  const {data} = useFetch(`/api/products?populate=*&[filters][categories][id]=${id}&pagination[pageSize]=100`)
   
 //  console.log(data);
 
@@ -72,7 +72,7 @@ const tostWishlist = (title ) => {
                   </div>
                 </div>
 
-                <div className=" relative overflow-hidden bg-gray-100 rounded-[5px]  " >
+                <Link to={`/productdetail/${item.id}`} className=" h-[100%] w-[100%] relative overflow-hidden bg-gray-100 rounded-[5px]  " >
                   <img
                     width={200}
                     className="  py-4 px-5 hover:scale-105 duration-300  "
@@ -87,7 +87,7 @@ const tostWishlist = (title ) => {
                      Add to cart
                   </button>
                 </div>
-                </div>
+                </Link>
 
                 <p className=" text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}{item.attributes.title.length > 20 ? "..." : ""}</p>
                 <div className=" flex items-center gap-3">

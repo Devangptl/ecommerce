@@ -8,19 +8,19 @@ import OurProducts from '../components/OurProducts'
 import NewArrival from '../components/NewArrival'
 import Support from '../components/Support'
 
-const Home = ({data}) => {
+const Home = () => {
 
 
   return (
     <div className=' mt-[67px]'>
       <Header/>
       <div className=' px-[10%]'>
-      <Today data={data}/>
+      <Today />
       <Categories/>
-      <ThisMonth data={data}/>
+      <ThisMonth />
       <Offer/>
-      <OurProducts data={data} />
-      <NewArrival data={data} />
+      <OurProducts />
+      <NewArrival  />
       <Support/>
       </div>
     </div>

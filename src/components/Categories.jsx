@@ -5,6 +5,7 @@ import { BsSmartwatch } from "react-icons/bs";
 import { IoCameraOutline } from "react-icons/io5";
 import { GiHeadphones } from "react-icons/gi";
 import { MdSportsEsports } from "react-icons/md";
+import { SiHomeassistant } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
@@ -75,6 +76,11 @@ const category = [
     id: 6,
     icon: <MdSportsEsports />,
     name: "Gaming",
+  },
+  {
+    id: 7,
+    icon: <SiHomeassistant  />,
+    name: "Home Appliances",
   },
 ];
 

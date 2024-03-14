@@ -144,7 +144,8 @@ const Checkout = () => {
                           </div>
                           <div>
                             <div className="">
-                              {item.attributes.title} ({" "}
+                            {item.attributes.title.slice(0, 35)}{" "}
+                    {item.attributes.title.length > 20 ? "..." : ""} ({" "}
                               {item.attributes.quantity} )
                             </div>
                           </div>

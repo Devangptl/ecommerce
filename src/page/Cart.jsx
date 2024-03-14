@@ -104,7 +104,8 @@ const Cart = () => {
                             </div>
                           </div>
                           <Link to={`/productdetail/${item.id}`}>
-                            <div className=" hover:underline underline-offset-2 duration-300 font-bold">{item.attributes.title}</div>
+                            <div className=" hover:underline underline-offset-2 duration-300 font-bold">{item.attributes.title.slice(0, 40)}{" "}
+                    {item.attributes.title.length > 20 ? "..." : ""}</div>
                           </Link>
                         </div>
                       </td>

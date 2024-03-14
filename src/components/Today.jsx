@@ -5,13 +5,16 @@ import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import Countdown from "react-countdown";
 import Rating from "./Rating";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
 import { toast } from "sonner";
 import { addToWishlist } from "../features/wishlistSlice";
+import useFetch from "../hooks/useFetch";
 
-const Today = ({ data }) => {
+const Today = () => {
   // console.log(data);
+
+  const { data } = useFetch("/api/products?populate=*&pagination[pageSize]=7");
 
   const tostCart = (title) => {
     toast.success(`${title} added to cart`);
@@ -20,7 +23,7 @@ const Today = ({ data }) => {
     toast.success(`${title} added to Wishlist `);
   };
 
-  const items = useSelector((state) => state.allCart.item);
+  // const items = useSelector((state) => state.allCart.item);
 
   const dispatch = useDispatch();
 
@@ -112,7 +115,7 @@ const Today = ({ data }) => {
 
                   <Link
                     className=" h-[215px] w-[250px]  relative overflow-hidden bg-gray-100 rounded-[5px]  "
-                    to={"/"}
+                    to={`/productdetail/${item.id}`}
                   >
                     <img
                       className="h-[200px] w-[200px] m-auto p-3  hover:scale-105 duration-300  "
@@ -180,7 +183,7 @@ const Today = ({ data }) => {
 
       <div className="  text-center my-[50px]">
         <Link
-          to={"/"}
+          to={"/today"}
           className="  hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444]  duration-300 bg-[#db4444] px-7 py-2 rounded-[4px] text-white  text-center "
         >
           View All Products

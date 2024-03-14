@@ -16,11 +16,14 @@ import Profile from "./page/account/Profile";
 import EditProfile from "./page/account/EditDetails";
 import About from "./page/About";
 import Contact from "./page/Contact";
+import OurProducts from "./page/OurProducts";
+import ThisMonths from "./page/ThisMonths";
+import Today from "./page/Today";
 
 function App() {
 
 
-  const {data} = useFetch('/api/products?populate=*')
+  const {data} = useFetch('/api/products?populate=*&pagination[pageSize]=100')
 
 
 
@@ -29,7 +32,7 @@ function App() {
       <Navbar />
       <Toaster position="top-center"  richColors />
       <Routes>
-        <Route  path="/" element={<Home data={data} />} />
+        <Route  path="/" element={<Home  />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/wishlist" element={<Wishlist />} />
@@ -41,6 +44,9 @@ function App() {
         <Route path="/myaccount"  element={<Profile  />} />
         <Route path="/about"  element={<About  />} />
         <Route path="/contact"  element={<Contact  />} />
+        <Route path="/ourproducts"  element={<OurProducts  />} />
+        <Route path="/thismonths"  element={<ThisMonths  />} />
+        <Route path="/today"  element={<Today  />} />
         
 
       </Routes>

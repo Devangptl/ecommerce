@@ -1,50 +1,50 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import Rating from './Rating';
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import SubCategory from "../components/SubCategory";
+import useFetch from "../hooks/useFetch";
 import { GoHeart } from "react-icons/go";
 import { IoEyeOutline } from "react-icons/io5";
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'sonner';
-import { addToCart } from '../features/cartSlice';
-import { addToWishlist } from '../features/wishlistSlice';
-import useFetch from '../hooks/useFetch';
+import { addToWishlist } from "../features/wishlistSlice";
+import { addToCart } from "../features/cartSlice";
+import Rating from "../components/Rating";
+import { toast } from "sonner";
+import { useDispatch } from "react-redux";
 
 const OurProducts = () => {
+
+  const { id , title } = useParams();
+
+
+  const {data} = useFetch('/api/products?populate=*&pagination[pageSize]=100')
+
+
+const dispatch = useDispatch();
+
+const tostCart = (title) => {
+  toast.success(`${title} added to cart`);
+};
+const tostWishlist = (title ) => {
   
-  const {data} = useFetch('/api/products?populate=*&pagination[pageSize]=10')
-
-  const items = useSelector((state) => state.allCart.item);
-
-
-  const dispatch = useDispatch();
-
-  const tostCart = (title) => {
-    toast.success(`${title} added to cart`);
-  };
-  const tostWishlist = (title ) => {
-    
-    toast.success(`${title} added to Wishlist `)
-   
-  };
-
-
-  console.log(data);
+  toast.success(`${title} added to Wishlist `)
  
+};
 
-  return (
+
+
+  return <div >
+
+    <div className=" my-[10%] px-[14%] ">
+
+    <SubCategory title={title} dataC={data}  id={id} />
+    <p className="text-[#6e6d6d] pb-3 ">
+        {" "}
+        <Link to={"/"} className=" pr-1 ">
+          Home{" "}
+        </Link>{" "}
+        / <span className=" font-medium text-black pl-1 "> Our Products</span>{" "}
+      </p>
+  
     <div>
-      <div className=" mt-20 flex flex-col gap-4">
-      <div className=" flex  items-center gap-2">
-        <p className="  border-[#db4444] rounded-sm border-l-[15px] w-[20px] h-[35px]"></p>
-        <p className=" text-[18px] font-extrabold text-[#db4444] ">Our Products</p>
-      </div>
-
-      <div className=" flex items-center text-[45px] font-semibold gap-20 ">
-        <p className=" ">Explore Our Products</p>
-       
-      </div>
-
-      <div>
         <div className=" grid grid-cols-5   gap-3">
           {data?.map((item) => {
             return (
@@ -68,10 +68,10 @@ const OurProducts = () => {
                   </div>
                 </div>
 
-                <Link className=" h-[100%] w-[100%]  relative overflow-hidden bg-gray-100 rounded-[5px]  " to={`/productdetail/${item.id}`}>
+                <Link to={`/productdetail/${item.id}`} className=" h-[100%] w-[100%] relative overflow-hidden bg-gray-100 rounded-[5px]  " >
                   <img
                     width={200}
-                    className="m-auto  py-4 px-5 hover:scale-105 duration-300  "
+                    className="  py-4 px-5 hover:scale-105 duration-300  "
                     src={
                       process.env.REACT_APP_STRIPE_UP_URL +
                       item.attributes.image.data[0].attributes.url
@@ -101,19 +101,8 @@ const OurProducts = () => {
         </div>
       
       </div>
+  </div>
+  </div>;
+};
 
-      <div className="  text-center my-[50px]">
-        <Link to={"/ourproducts"} className="  hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444]  duration-300 bg-[#db4444] px-7 py-2 rounded-[4px] text-white  text-center ">View All Products</Link>
-      </div>
-
-      <div className=" border border-b-1  border-gray-400"></div>
-
-    </div>
-    </div>
-  )
-}
-
-
-
-
-export default OurProducts
+export default OurProducts;

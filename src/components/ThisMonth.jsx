@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import Rating from './Rating';
 import { GoHeart } from "react-icons/go";
 import { IoEyeOutline } from "react-icons/io5";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast } from 'sonner';
 import { addToCart } from '../features/cartSlice';
 import { addToWishlist } from '../features/wishlistSlice';
+import useFetch from '../hooks/useFetch';
 
-const ThisMonth = ({data}) => {
+const ThisMonth = () => {
 
     //  console.log(data);
+    const {data} = useFetch('/api/products?populate=*&pagination[pageSize]=20')
 
 
-  const items = useSelector((state) => state.allCart.item);
 
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ const ThisMonth = ({data}) => {
 
         <div className="  flex items-center justify-between text-[45px] font-semibold gap-20 ">
           <p className=" ">Best Selling Products</p>
-          <Link to= {"/"} className=' hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444] duration-300 text-[15px] bg-[#db4444] text-white px-7 py-2 rounded-[4px] ' >View All</Link>
+          <Link to= {"/thismonths"} className=' hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444] duration-300 text-[15px] bg-[#db4444] text-white px-7 py-2 rounded-[4px] ' >View All</Link>
         </div>
 
         <div className=" grid grid-cols-5    gap-3 ">
@@ -64,7 +65,7 @@ const ThisMonth = ({data}) => {
                     </div>
                   </div>
   
-                  <Link className=" relative overflow-hidden bg-gray-100 rounded-[5px]  " to={"/"}>
+                  <Link className="  h-[100%] w-[100%] relative overflow-hidden bg-gray-100 rounded-[5px]  " to={`/productdetail/${item.id}`}>
                     <img
                       width={300}
                       className="  py-4 px-5 hover:scale-105 duration-300  "
