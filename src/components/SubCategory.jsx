@@ -6,7 +6,7 @@ const SubCategory = ({title , dataC,  id}) => {
   // const {data} = useFetch(`/api/products?filters\[authors\][hobby][$contains]=dance`)
 // const {data} = useFetch(`/api/categories?filters[title][$eq]=${title}`)
 const {data} = useFetch(`/api/sub-categories`)
-console.log(data);
+
 
   return (
     <div>

@@ -28,9 +28,6 @@ const OurProducts = () => {
   };
 
 
-  console.log(data);
- 
-
   return (
     <div>
       <div className=" mt-20 flex flex-col gap-4">
@@ -68,7 +65,10 @@ const OurProducts = () => {
                   </div>
                 </div>
 
-                <Link className=" h-[100%] w-[100%]  relative overflow-hidden bg-gray-100 rounded-[5px]  " to={`/productdetail/${item.id}`}>
+                <div className=" h-[100%] w-[100%]  relative overflow-hidden bg-gray-100 rounded-[5px]  " >
+                  
+                  <Link to={`/productdetail/${item.id}`}>
+
                   <img
                     width={200}
                     className="m-auto  py-4 px-5 hover:scale-105 duration-300  "
@@ -77,13 +77,14 @@ const OurProducts = () => {
                       item.attributes.image.data[0].attributes.url
                     }
                     alt=""
-                  />
+                    />
+                    </Link>
                   <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
                   <button onClick={() => dispatch(addToCart(item)) ? tostCart(item.attributes.title) : "" } className="   bg-[black]  duration-700  text-[12px] w-full  font-semibold text-white px-2 py-1  rounded-[6px] rounded-t-none   ">
                      Add to cart
                   </button>
                 </div>
-                </Link>
+                </div>
 
                 <p className=" text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}{item.attributes.title.length > 20 ? "..." : ""}</p>
                 <div className=" flex items-center gap-3">

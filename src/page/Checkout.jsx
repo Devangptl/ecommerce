@@ -7,19 +7,41 @@ import { BsBuildingsFill } from "react-icons/bs";
 import { MdLocalPhone } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { loadStripe } from "@stripe/stripe-js";
+import { request } from "../hooks/request";
 
 const Checkout = () => {
   const { cart } = useSelector((state) => state.allCart);
 
   const getTotal = () => {
-    let totalPrice = 0
-    cart.forEach(item => {
-      totalPrice += item.attributes.price * item.attributes.quantity
-    })
-    return {totalPrice}
-  }
+    let totalPrice = 0;
+    cart.forEach((item) => {
+      totalPrice += item.attributes.price * item.attributes.quantity;
+    });
+    return { totalPrice };
+  };
 
-  const  shipping = 0
+  const shipping = 0;
+
+  const stripePromise = loadStripe(
+    process.env.REACT_APP_PAYMENT_PUBLISHABLE_KEY
+  );
+
+  const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+
+      const res = await request.post("/api/orders", {
+        products: cart,
+      });
+
+      await stripe.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="mt-[5%]">
@@ -40,85 +62,85 @@ const Checkout = () => {
           {/* Shipping Details */}
           <div className="   flex flex-col gap-8  rounded-md">
             <div className=" shadow-xl rounded-lg flex flex-col gap-8 py-3 pb-10 px-5">
-            <div className=" flex gap-4 justify-between  items-center">
-              <div className=" w-full relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                  <FaUser className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+              <div className=" flex gap-4 justify-between  items-center">
+                <div className=" w-full relative">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <FaUser className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10 p-2.5  "
+                    placeholder="First Name"
+                  />
                 </div>
-                <input
-                  type="text"
-                  className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10 p-2.5  "
-                  placeholder="First Name"
-                />
-              </div>
-              <div className="relative w-full ">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                  <FaUser className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                <div className="relative w-full ">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <FaUser className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
+                    placeholder="Last Name"
+                  />
                 </div>
-                <input
-                  type="text"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
-                  placeholder="Last Name"
-                />
               </div>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                <GiStreetLight className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-              </div>
-              <input
-                type="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
-                placeholder="Street Address"
-              />
-            </div>
-            <div className="relative">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                <MdApartment className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-              </div>
-              <input
-                type="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
-                placeholder="Apartment, floor, etc. (optional) "
-              />
-            </div>
-            <div className="relative">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                <BsBuildingsFill className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-              </div>
-              <input
-                type="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
-                placeholder="Town/City"
-              />
-            </div>
-            <div className=" flex gap-4 justify-between  items-center">
-              <div className=" w-full relative">
+              <div className="relative">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                  <MdLocalPhone className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10 p-2.5  "
-                  placeholder="Phone Number"
-                />
-              </div>
-              <div className="relative w-full ">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                  <MdEmail className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                  <GiStreetLight className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                 </div>
                 <input
                   type="text"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
-                  placeholder="Email Address"
+                  placeholder="Street Address"
                 />
               </div>
-            </div>
-            <div className=" text-center">
-              <button className=" px-10 py-2 rounded-sm bg-[#db4444] border-[#db4444] border-2  text-white ">
-                Save Shipping Details
-              </button>
-            </div>
+              <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                  <MdApartment className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
+                  placeholder="Apartment, floor, etc. (optional) "
+                />
+              </div>
+              <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                  <BsBuildingsFill className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
+                  placeholder="Town/City"
+                />
+              </div>
+              <div className=" flex gap-4 justify-between  items-center">
+                <div className=" w-full relative">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <MdLocalPhone className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10 p-2.5  "
+                    placeholder="Phone Number"
+                  />
+                </div>
+                <div className="relative w-full ">
+                  <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <MdEmail className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5  "
+                    placeholder="Email Address"
+                  />
+                </div>
+              </div>
+              <div className=" text-center">
+                <button className=" px-10 py-2 rounded-sm bg-[#db4444] border-[#db4444] border-2  text-white ">
+                  Save Shipping Details
+                </button>
+              </div>
             </div>
           </div>
 
@@ -144,8 +166,8 @@ const Checkout = () => {
                           </div>
                           <div>
                             <div className="">
-                            {item.attributes.title.slice(0, 35)}{" "}
-                    {item.attributes.title.length > 20 ? "..." : ""} ({" "}
+                              {item.attributes.title.slice(0, 35)}{" "}
+                              {item.attributes.title.length > 20 ? "..." : ""} ({" "}
                               {item.attributes.quantity} )
                             </div>
                           </div>
@@ -164,7 +186,9 @@ const Checkout = () => {
 
               <div className=" flex items-center justify-between py-3">
                 <p className=" text-[20px] font-bold">subtotal: </p>
-                <p className="text-[20px] font-bold">₹{getTotal().totalPrice}</p>
+                <p className="text-[20px] font-bold">
+                  ₹{getTotal().totalPrice}
+                </p>
               </div>
 
               <div className=" border-b-2"></div>
@@ -178,7 +202,9 @@ const Checkout = () => {
 
               <div className=" flex items-center justify-between py-3">
                 <p className=" text-[20px] font-bold">Total: </p>
-                <p className="text-[20px] font-bold">₹{getTotal().totalPrice + shipping}</p>
+                <p className="text-[20px] font-bold">
+                  ₹{getTotal().totalPrice + shipping}
+                </p>
               </div>
 
               {/* card   */}
@@ -247,7 +273,10 @@ const Checkout = () => {
               </div>
 
               <div className=" text-center">
-                <button className=" font-bold px-10 py-2 rounded-sm bg-[#db4444] border-[#db4444] border-2  text-white ">
+                <button
+                  onClick={handlePayment}
+                  className=" font-bold px-10 py-2 rounded-sm bg-[#db4444] border-[#db4444] border-2  text-white "
+                >
                   Place Order
                 </button>
               </div>

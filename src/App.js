@@ -19,6 +19,8 @@ import Contact from "./page/Contact";
 import OurProducts from "./page/OurProducts";
 import ThisMonths from "./page/ThisMonths";
 import Today from "./page/Today";
+import Success from "./page/Success";
+import MyOrder from "./page/MyOrder";
 
 function App() {
 
@@ -47,6 +49,8 @@ function App() {
         <Route path="/ourproducts"  element={<OurProducts  />} />
         <Route path="/thismonths"  element={<ThisMonths  />} />
         <Route path="/today"  element={<Today  />} />
+        <Route path="/success"  element={<Success  />} />
+        <Route path="/myorder"  element={<MyOrder  />} />
         
 
       </Routes>

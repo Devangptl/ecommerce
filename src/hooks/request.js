@@ -6,3 +6,4 @@ export const request = axios.create({
     Authorization: 'bearer ' + process.env.REACT_APP_STRIPE_APP_KEY,
   },
 });
+

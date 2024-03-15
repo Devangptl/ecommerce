@@ -5,14 +5,13 @@ import { GoHeart } from "react-icons/go";
 import { BsCart3 } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartTotal } from "../features/cartSlice";
+import Search from "./Search";
 
 const Navbar = () => {
-  const { cart, totalQuantity } = useSelector((state) => state.allCart);
+  const { cart } = useSelector((state) => state.allCart);
   const { wishlist } = useSelector(
     (state) => state.allWishlist
   );
-  const dispatch = useDispatch();
 
 
   return (
@@ -52,17 +51,8 @@ const Navbar = () => {
       </div>
 
       <div className=" text-[#3c3c3c]  flex flex-row items-center gap-7">
-        <div className=" flex flex-row items-center ">
-          <input
-            type="text"
-            id="password"
-            className=" text-[14px] outline-none pl-3 pr-10 py-2  bg-gray-100 rounded-[3px] hover:border-gray-300  "
-            placeholder="What are you looking for?"
-          />
-          <button className="  font-bold text-center text-[20px]   ml-[-30px]  text-gray-400  hover:text-gray-900 transition-colors">
-            <CiSearch />
-          </button>
-        </div>
+       
+       <Search/>
 
         <Link to={"/wishlist"} className=" relative pl-3 text-[24px]">
           <GoHeart className=" hover:text-[#ac2121] " />
@@ -97,7 +87,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link className=" hover:bg-[#eaeaea]" to={"/order"}>
+              <Link className=" hover:bg-[#eaeaea]" to={"/myorder"}>
                 My Order
               </Link>
             </li>

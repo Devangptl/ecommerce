@@ -69,10 +69,12 @@ const Today = () => {
                       </div>
                     </div>
 
-                    <Link
+                    <div
                       className="  h-[100%] w-[100%] relative overflow-hidden bg-gray-100 rounded-[5px]  "
-                      to={`/productdetail/${item.id}`}
+                      
                     >
+                      <Link to={`/productdetail/${item.id}`}>
+
                       <img
                         width={300}
                         className="  py-4 px-5 hover:scale-105 duration-300  "
@@ -81,7 +83,8 @@ const Today = () => {
                           item.attributes.image.data[0].attributes.url
                         }
                         alt=""
-                      />
+                        />
+                        </Link>
                       <div className="absolute w-full  group-hover:bottom-0 bottom-[-30px] duration-300    ">
                         <button
                           onClick={() =>
@@ -94,7 +97,7 @@ const Today = () => {
                           Add to cart
                         </button>
                       </div>
-                    </Link>
+                    </div>
 
                     <p className=" text-[18px] font-[1000]">
                       {item.attributes.title.slice(0, 20)}
