@@ -7,18 +7,18 @@ const MyOrder = () => {
     const [products , setProducts]= useState([])
 
     const { cart } = useSelector((state) => state.allCart);
-    const { data } = useFetch("/api/orders");
-    // console.log(data);
+    const { data } = useFetch("/api/orders/1");
+    console.log(data);
 
     
     
 
-    data?.map((item)=>{
-        const res = item.attributes.products
-            setProducts(res);
-        })
+    // data?.map((item)=>{
+    //     const res = item.attributes.products
+    //         setProducts(res);
+    //     })
 
-    console.log(products);
+    // console.log(products);
 
   return (
     <div className=' mt-[8%] px-[5%]'>

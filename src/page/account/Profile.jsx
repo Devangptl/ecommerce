@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EditProfile from "./EditDetails";
 import MyProfile from "./MyProfile";
+import axios from "axios";
 
 
-const RenderCompo = ({index})=>{
+const RenderCompo = ({index , user})=>{
     switch (index) {
-      case 0: return <MyProfile/>
+      case 0: return <MyProfile user={user}  />
         break;
       case 1: return <EditProfile/>
         break;
@@ -16,11 +17,44 @@ const RenderCompo = ({index})=>{
     }
 }
 
-const Profile = () => {
+const Profile = ({token}) => {
 
   const [isSelect , setIsSelect] = useState(0)
 
+  const [user, setUser] = useState({});
+  const [isUserUpdated, setisUserUpdated] = useState(false);
+ 
 
+
+
+  useEffect(() => {
+    const getProfileData = async () => {
+      try {
+        // const { data } = await axios.get(`http://localhost:1337/api/users/me`, {
+        //   headers: {
+        //     Authorization: `bearer `,
+        //   },
+        // });
+
+        const url = `http://localhost:1337/api/users/me`;
+      
+        const data = await fetch(url ,{
+          method : "GET",
+          headers : { 
+            Authorization: `bearer ${token}`,
+          }
+        })
+
+        const res = await data.json()
+
+        setUser(res);
+        setisUserUpdated(false);
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+    getProfileData();
+  }, [token, isUserUpdated]);
  
 
   return (
@@ -45,7 +79,7 @@ const Profile = () => {
             <button onClick={()=>setIsSelect(1)}  className={`${isSelect == 0 ? "" : "text-[#db4444]"}`}>Edit Profile</button>
           </div>
           <div className=" col-span-3">
-            <RenderCompo index={isSelect} />
+            <RenderCompo user={user} index={isSelect} />
           </div>
         </div>
       </div>

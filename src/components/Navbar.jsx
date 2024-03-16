@@ -92,7 +92,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link className=" hover:bg-[#eaeaea]" to={"/signup"}>
+              <Link className=" hover:bg-[#eaeaea]" to={"/login"}>
                 Login
               </Link>
             </li>

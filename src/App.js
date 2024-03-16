@@ -21,13 +21,16 @@ import ThisMonths from "./page/ThisMonths";
 import Today from "./page/Today";
 import Success from "./page/Success";
 import MyOrder from "./page/MyOrder";
+import { Protector, userData } from "./helpers";
 
 function App() {
 
 
   const {data} = useFetch('/api/products?populate=*&pagination[pageSize]=100')
 
+const {jwt} = userData()
 
+console.log(jwt);
 
   return (
     <div>
@@ -43,7 +46,7 @@ function App() {
         <Route path="/productdetail/:id" element={<ProductDetail data={data} />} />
         <Route path="/:title/:id"  element={<Categories data={data} />} />
         <Route path="/checkout"  element={<Checkout  />} />
-        <Route path="/myaccount"  element={<Profile  />} />
+        <Route path="/myaccount"  element={ <Protector Component={ <Profile token={jwt} />} />} />
         <Route path="/about"  element={<About  />} />
         <Route path="/contact"  element={<Contact  />} />
         <Route path="/ourproducts"  element={<OurProducts  />} />

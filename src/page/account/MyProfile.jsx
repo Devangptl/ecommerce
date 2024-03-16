@@ -1,6 +1,7 @@
 import React from "react";
 
-const MyProfile = () => {
+const MyProfile = ({user}) => {
+  console.log(user);
   return (
     <div>
       <div className=" mb-10 shadow-xl rounded-lg ">
@@ -15,8 +16,8 @@ const MyProfile = () => {
           </div>
 
           <div className=" flex  items-center justify-between px-24 gap-4 ">
-            <p className=" text-[24px] font-bold">Devang Patel</p>
-            <p className=" text-[20px] w-[300px] text-end ">devang@gmail.com</p>
+            <p className=" text-[24px] font-bold">{user.username}</p>
+            <p className=" text-[20px] w-[300px] text-end ">{user.email}</p>
           </div>
 
           <div className=" flex  items-start justify-between py-5 px-24 gap-4 ">
