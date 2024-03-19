@@ -30,19 +30,19 @@ const OurProducts = () => {
 
   return (
     <div>
-      <div className=" mt-20 flex flex-col gap-4">
+      <div className=" mt-8 md:mt-20 flex flex-col gap-4">
       <div className=" flex  items-center gap-2">
         <p className="  border-[#db4444] rounded-sm border-l-[15px] w-[20px] h-[35px]"></p>
-        <p className=" text-[18px] font-extrabold text-[#db4444] ">Our Products</p>
+        <p className=" md:text-[18px] font-extrabold text-[#db4444] ">Our Products</p>
       </div>
 
-      <div className=" flex items-center text-[45px] font-semibold gap-20 ">
+      <div className=" flex items-center md:text-[45px] font-semibold gap-20 ">
         <p className=" ">Explore Our Products</p>
        
       </div>
 
       <div>
-        <div className=" grid grid-cols-5   gap-3">
+        <div className=" grid md:grid-cols-5 grid-cols-2  gap-3">
           {data?.map((item) => {
             return (
               <div key={item.id} className=" group  py-2  flex gap-2 flex-col  ">
@@ -59,7 +59,7 @@ const OurProducts = () => {
                     </Link>
                     <Link 
                     to={`/productdetail/${item.id}`}
-                     className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full p-2">
+                     className=" hover:bg-[#db4444] duration-300 hover:text-white bg-white rounded-full  p-2">
                       <IoEyeOutline />
                     </Link>
                   </div>
@@ -70,8 +70,8 @@ const OurProducts = () => {
                   <Link to={`/productdetail/${item.id}`}>
 
                   <img
-                    width={200}
-                    className="m-auto  py-4 px-5 hover:scale-105 duration-300  "
+                    
+                    className=" w-[150px] md:w-[200px] m-auto  py-4 px-5 hover:scale-105 duration-300  "
                     src={
                       process.env.REACT_APP_STRIPE_UP_URL +
                       item.attributes.image.data[0].attributes.url
@@ -86,10 +86,10 @@ const OurProducts = () => {
                 </div>
                 </div>
 
-                <p className=" text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}{item.attributes.title.length > 20 ? "..." : ""}</p>
+                <p className=" text-[13px] md:text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}{item.attributes.title.length > 20 ? "..." : ""}</p>
                 <div className=" flex items-center gap-3">
-                  <p className="text-[#db4444] font-bold">₹ {item.attributes.price}</p>
-                  <p className="text-[#929292] font-semibold line-through  ">
+                  <p className="text-[#db4444] text-[14px] md:text-[16px] font-bold">₹ {item.attributes.price}</p>
+                  <p className="text-[#929292] text-[14px] md:text-[16px] font-semibold line-through  ">
                     ₹ {item.attributes.originalPrice}
                   </p>
                 </div>
@@ -103,8 +103,8 @@ const OurProducts = () => {
       
       </div>
 
-      <div className="  text-center my-[50px]">
-        <Link to={"/ourproducts"} className="  hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444]  duration-300 bg-[#db4444] px-7 py-2 rounded-[4px] text-white  text-center ">View All Products</Link>
+      <div className="  text-center my-[20px] md:my-[50px]">
+        <Link to={"/ourproducts"} className="  hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444]  duration-300 bg-[#db4444] px-3 md:text-[16px] text-[14px] md:px-7 py-2 rounded-[4px] text-white  text-center ">View All Products</Link>
       </div>
 
       <div className=" border border-b-1  border-gray-400"></div>

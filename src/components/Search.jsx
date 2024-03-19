@@ -18,21 +18,21 @@ const Search = () => {
 
   return (
     <div>
-      <div className=" flex flex-row items-center ">
+      <div className="   flex flex-row items-center ">
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           type="text"
           id="password"
-          className=" text-[14px] outline-none pl-3 pr-10 py-2  bg-gray-100 rounded-[3px] hover:border-gray-300  "
+          className=" text-[10px] md:text-[14px] outline-none pl-3 pr-5 md:pr-10 py-2  bg-gray-100 rounded-[3px] hover:border-gray-300  "
           placeholder="What are you looking for?"
         />
-        <button className="  font-bold text-center text-[20px]   ml-[-30px]  text-gray-400  hover:text-gray-900 transition-colors">
+        <button className="  font-bold text-center md:text-[20px] text-[14px]   md:ml-[-30px] ml-[-20px]  text-gray-400  hover:text-gray-900 transition-colors">
           <CiSearch />
         </button>
       </div>
 
-      <div className="absolute z-10 w-[400px]  rounded-lg  divide-y max-h-72 overflow-y-auto bg-white mt-1">
+      <div className="absolute z-10 md:w-[400px] w-[210px]  rounded-lg  divide-y max-h-72 overflow-y-auto bg-white mt-1">
         {data?.map((item) => {
           return (
             <div
@@ -47,7 +47,8 @@ const Search = () => {
               <p>
                 {" "}
                 <img
-                  width={25}
+                  // width={25}
+                  className=" w-[20px] md:w-[25px]"
                   src={
                     process.env.REACT_APP_STRIPE_UP_URL +
                     item.attributes.image.data[0].attributes.url
@@ -55,12 +56,12 @@ const Search = () => {
                   alt=""
                   />{" "}
               </p>
-              <p>
+              <p className=" text-[12px] md:text-[16px]">
                 {item.attributes.title.slice(0, 35)}{" "}
                 {item.attributes.title.length > 35 ? "..." : ""}
               </p>
                   </div>
-              <p>₹{item.attributes.price}</p>
+              <p className="text-[12px] md:text-[16px]">₹{item.attributes.price}</p>
             </div>
           );
         })}

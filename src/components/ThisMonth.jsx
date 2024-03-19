@@ -27,27 +27,27 @@ const ThisMonth = () => {
 
   return (
     <div>
-      <div className=" mt-20 flex flex-col gap-4">
+      <div className=" mt-8 md:mt-20 flex flex-col gap-4">
         <div className=" flex  items-center gap-2">
           <p className="  border-[#db4444] rounded-sm border-l-[15px] w-[20px] h-[35px]"></p>
-          <p className=" text-[18px] font-extrabold text-[#db4444] ">
+          <p className=" md:text-[18px] font-extrabold text-[#db4444] ">
             This Month
           </p>
         </div>
 
-        <div className="  flex items-center justify-between text-[45px] font-semibold gap-20 ">
+        <div className="  flex items-center justify-between md:text-[45px] font-semibold gap-20 ">
           <p className=" ">Best Selling Products</p>
-          <Link to= {"/thismonths"} className=' hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444] duration-300 text-[15px] bg-[#db4444] text-white px-7 py-2 rounded-[4px] ' >View All</Link>
+          <Link to= {"/thismonths"} className=' hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444] duration-300 md:text-[15px] text-[12px] bg-[#db4444] text-white md:px-7 px-3 md:py-2 py-1 rounded-[4px] ' >View All</Link>
         </div>
 
-        <div className=" grid grid-cols-5    gap-3 ">
+        <div className=" grid md:grid-cols-5 grid-cols-2   gap-3 ">
           {data?.map((item ) => {
             if(item.attributes.thisMonth === true){
               
               return (
                 <div key={item.id} className=" group flex gap-2 flex-col  ">
                   <div className=" relative">
-                    <p className=" absolute  bg-[#db4444] top-4 text-[12px] w-[50px]  z-10 font-semibold text-white px-2 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
+                    <p className=" absolute  bg-[#db4444] top-4 text-[10px] md:text-[12px] w-[35px] md:w-[50px]  z-10 font-semibold text-white md:px-2 px-1 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
                       - {item.attributes.discount} %
                     </p>
                   </div>
@@ -69,8 +69,8 @@ const ThisMonth = () => {
                     
                   <Link to={`/productdetail/${item.id}`}> 
                     <img
-                      width={300}
-                      className="  py-4 px-5 hover:scale-105 duration-300  "
+                      // width={300}
+                      className=" w-[150px] md:w-[300px]  py-4 px-5 hover:scale-105 duration-300  "
                       src={process.env.REACT_APP_STRIPE_UP_URL +
                         item.attributes.image.data[0].attributes.url}
                       alt=""
@@ -83,11 +83,11 @@ const ThisMonth = () => {
                   </div>
                   </div>
   
-                  <p className=" text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}
+                  <p className=" text-[14px] md:text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}
                     {item.attributes.title.length > 20 ? "..." : ""}</p>
                   <div className=" flex items-center gap-3">
-                    <p className="text-[#db4444] font-bold">₹ {item.attributes.price}</p>
-                    <p className="text-[#929292] font-semibold line-through  ">
+                    <p className="text-[#db4444] text-[14px] md:text-[16px] font-bold">₹ {item.attributes.price}</p>
+                    <p className="text-[#929292] text-[14px] md:text-[16px] font-semibold line-through  ">
                       ₹ {item.attributes.originalPrice}
                     </p>
                   </div>

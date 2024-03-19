@@ -63,15 +63,15 @@ const Today = () => {
   };
 
   return (
-    <div className=" mt-20 flex flex-col gap-4">
+    <div className=" mt-8 md:mt-20 flex flex-col gap-4">
       <div className=" flex  items-center gap-2">
         <p className="  border-[#db4444] rounded-sm border-l-[15px] w-[20px] h-[35px]"></p>
-        <p className=" text-[18px] font-extrabold text-[#db4444] ">Today's</p>
+        <p className=" text-[14px] md:text-[18px] font-extrabold text-[#db4444] ">Today's</p>
       </div>
 
-      <div className=" flex items-center text-[45px] font-semibold gap-20 ">
+      <div className=" flex items-center md:text-[45px] font-semibold md:justify-normal justify-between md:gap-20 ">
         <p className=" ">Flash Sales</p>
-        <p className=" font-[600] text-[35px]">
+        <p className=" font-[600] md:text-[35px]">
           {" "}
           <Countdown date={Date.now() + 259200000} renderer={renderer} />
         </p>
@@ -184,10 +184,10 @@ const Today = () => {
         </div>
       </div>
 
-      <div className="  text-center my-[50px]">
+      <div className="  text-center my-[20px] md:my-[50px]">
         <Link
           to={"/today"}
-          className="  hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444]  duration-300 bg-[#db4444] px-7 py-2 rounded-[4px] text-white  text-center "
+          className="  hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444]  duration-300 bg-[#db4444] md:px-7 px-4 md:text-[16px] text-[14px] py-2 rounded-[4px] text-white  text-center "
         >
           View All Products
         </Link>

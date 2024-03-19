@@ -36,7 +36,7 @@ const Profile = ({token}) => {
         //   },
         // });
 
-        const url = `http://localhost:1337/api/users/me`;
+        const url = `http://localhost:1337/api/users/me?populate=*`;
       
         const data = await fetch(url ,{
           method : "GET",

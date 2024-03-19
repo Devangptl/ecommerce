@@ -9,14 +9,14 @@ const Rating = ({rating}) => {
         let number = index + 0.5
 
         return(
-            <span key={index}>
+            <span className='md:text-[14px] text-[11px] ' key={index}>
                 {
                   rating >= index +1 ?(
                     <FaStar className=' '/>
                   ) : rating >= number ? (
-                    <FaStarHalfAlt/>
+                    <FaStarHalfAlt className='text-[10.7px] md:text-[13.8px]' />
                   ):(
-                    <AiOutlineStar className=' text-[16px]'/>
+                    <AiOutlineStar className=' text-[12.3px] md:text-[15.7px]'/>
                   )
                 }
             </span>

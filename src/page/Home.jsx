@@ -12,15 +12,21 @@ const Home = () => {
 
 
   return (
-    <div className=' mt-[67px]'>
+    <div className='  md:mt-[67px]'>
       <Header/>
-      <div className=' px-[10%]'>
+      <div className=' px-5 md:px-[10%]'>
       <Today />
       <Categories/>
       <ThisMonth />
+      <div className=' md:flex hidden'>
+
       <Offer/>
+      </div>
       <OurProducts />
+      <div className=' md:flex hidden'>
+
       <NewArrival  />
+      </div>
       <Support/>
       </div>
     </div>

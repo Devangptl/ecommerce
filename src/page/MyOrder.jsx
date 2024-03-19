@@ -6,19 +6,12 @@ const MyOrder = () => {
 
     const [products , setProducts]= useState([])
 
+
+
     const { cart } = useSelector((state) => state.allCart);
-    const { data } = useFetch("/api/orders/1");
+    const { data } = useFetch("/api/orders");
+
     console.log(data);
-
-    
-    
-
-    // data?.map((item)=>{
-    //     const res = item.attributes.products
-    //         setProducts(res);
-    //     })
-
-    // console.log(products);
 
   return (
     <div className=' mt-[8%] px-[5%]'>
@@ -26,8 +19,10 @@ const MyOrder = () => {
         <p className=' text-center text-[30px] font-bold '>Order History</p>
       
       <div>
+        
       <div className=" shadow-xl px-4 my-8 rounded-lg py-2 ">
-                {products.map((item) => {
+                {products?.map((item) => {
+                  console.log(item?.attributes);
                   return (
                     <div className=" py-1">
                       <div className=" flex items-center justify-between">

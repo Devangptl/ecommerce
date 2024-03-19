@@ -37,7 +37,7 @@ const tostWishlist = (title ) => {
 
   return <div >
 
-    <div className=" my-[10%] px-[14%] ">
+    <div className=" mt-20 md:my-[10%] px-5 md:px-[14%] ">
 
     <SubCategory title={title} dataC={data}  id={id} />
     <p className="text-[#6e6d6d] pb-3 ">
@@ -49,7 +49,7 @@ const tostWishlist = (title ) => {
       </p>
   
     <div>
-        <div className=" grid grid-cols-5   gap-3">
+        <div className=" grid md:grid-cols-5  grid-cols-2 pb-6  gap-3">
           {data?.map((item) => {
             return (
               <div key={item.id} className=" group  py-2  flex gap-2 flex-col  ">
@@ -75,8 +75,8 @@ const tostWishlist = (title ) => {
                 <div className=" h-[100%] w-[100%] relative overflow-hidden bg-gray-100 rounded-[5px]  " >
                   <Link to={`/productdetail/${item.id}`}>
                   <img
-                    width={200}
-                    className="  py-4 px-5 hover:scale-105 duration-300  "
+                    
+                    className=" w-[150px] md:w-[200px]  py-4 px-5 hover:scale-105 duration-300  "
                     src={
                       process.env.REACT_APP_STRIPE_UP_URL +
                       item.attributes.image.data[0].attributes.url
@@ -91,8 +91,8 @@ const tostWishlist = (title ) => {
                 </div>
                 </div>
 
-                <p className=" text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}{item.attributes.title.length > 20 ? "..." : ""}</p>
-                <div className=" flex items-center gap-3">
+                <p className=" text-[13px] md:text-[18px] font-[1000]">{item.attributes.title.slice(0, 20)}{item.attributes.title.length > 20 ? "..." : ""}</p>
+                <div className=" flex md:text-[16px] text-[12px] items-center gap-3">
                   <p className="text-[#db4444] font-bold">₹ {item.attributes.price}</p>
                   <p className="text-[#929292] font-semibold line-through  ">
                     ₹ {item.attributes.originalPrice}

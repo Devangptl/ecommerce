@@ -27,7 +27,7 @@ const Today = () => {
   return (
     <div>
       <div>
-        <div className=" my-[10%] px-[14%]">
+        <div className=" mt-20 md:my-[10%] px-5 md:px-[14%]">
           <p className="text-[#6e6d6d] pb-3 ">
             {" "}
             <Link to={"/"} className=" pr-1 ">
@@ -37,13 +37,13 @@ const Today = () => {
             <span className=" font-medium text-black pl-1 "> Today</span>{" "}
           </p>
 
-          <div className=" grid grid-cols-5    gap-3 ">
+          <div className=" grid md:grid-cols-5 grid-cols-2 pb-6    gap-3 ">
             {data?.map((item) => {
               if (item.attributes.isNew === true) {
                 return (
                   <div key={item.id} className=" group flex gap-2 flex-col  ">
                     <div className=" relative">
-                      <p className=" absolute  bg-[#db4444] top-4 text-[12px] w-[50px]  z-10 font-semibold text-white px-2 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
+                      <p className=" absolute  bg-[#db4444] top-4 text-[10px] md:text-[12px] w-[35px] md:w-[50px]  z-10 font-semibold text-white md:px-2 px-1 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none  ">
                         - {item.attributes.discount} %
                       </p>
                     </div>
@@ -76,8 +76,8 @@ const Today = () => {
                       <Link to={`/productdetail/${item.id}`}>
 
                       <img
-                        width={300}
-                        className="  py-4 px-5 hover:scale-105 duration-300  "
+                        
+                        className=" w-[150px] md:w-[300px]  py-4 px-5 hover:scale-105 duration-300  "
                         src={
                           process.env.REACT_APP_STRIPE_UP_URL +
                           item.attributes.image.data[0].attributes.url
@@ -99,11 +99,11 @@ const Today = () => {
                       </div>
                     </div>
 
-                    <p className=" text-[18px] font-[1000]">
+                    <p className=" md:text-[18px] text-[13px] font-[1000]">
                       {item.attributes.title.slice(0, 20)}
                       {item.attributes.title.length > 20 ? "..." : ""}
                     </p>
-                    <div className=" flex items-center gap-3">
+                    <div className="md:text-[16px] text-[12px] flex items-center gap-3">
                       <p className="text-[#db4444] font-bold">
                         ₹ {item.attributes.price}
                       </p>
