@@ -8,6 +8,7 @@ import {
   removerItem,
 } from "../features/cartSlice";
 import useFetch from "../hooks/useFetch";
+import { toast } from "sonner";
 
 const ProductDetail = () => {
   // const [product , setProduct] = useState([])
@@ -32,6 +33,10 @@ const ProductDetail = () => {
     if (count > 0) {
       setCount((prev) => prev - 1);
     }
+  };
+
+  const tostCart = (title) => {
+    toast.success(`${title} added to cart`);
   };
 
   return (
@@ -66,7 +71,8 @@ const ProductDetail = () => {
           </div>
 
           <button
-            onClick={() => dispatch(addToCart(data?.[0]))}
+            onClick={() => dispatch(addToCart(data?.[0]))? tostCart(product?.title)
+              : ""}
             className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
           >
             Add to Cart
