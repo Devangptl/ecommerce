@@ -22,6 +22,7 @@ const Today = () => {
   const tostWishlist = (title) => {
     toast.success(`${title} added to Wishlist `);
   };
+  
 
   // const items = useSelector((state) => state.allCart.item);
 
