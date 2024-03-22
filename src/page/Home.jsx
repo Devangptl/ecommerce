@@ -23,7 +23,7 @@ const Home = () => {
       <Offer/>
       </div>
       <OurProducts />
-      <div className=' md:flex hidden'>
+      <div className=' md:block hidden'>
 
       <NewArrival  />
       </div>

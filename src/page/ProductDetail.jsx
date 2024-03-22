@@ -18,6 +18,7 @@ const ProductDetail = () => {
   const { id } = useParams();
 
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
+  // console.log(data);
 
   const product = data?.[0]?.attributes;
   console.log(data?.[0]);
