@@ -15,6 +15,7 @@ const Today = () => {
   // console.log(data);
 
   const { data } = useFetch("/api/products?populate=*&pagination[pageSize]=7");
+  console.log(data);
   
 
   const tostCart = (title) => {

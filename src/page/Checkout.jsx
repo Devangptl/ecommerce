@@ -63,13 +63,13 @@ const Checkout = () => {
           <div className="   flex flex-col gap-8   rounded-md">
             <div className=" shadow-xl rounded-lg flex flex-col md:gap-8 gap-4 py-3 pb-10 px-5">
               <div className=" flex md:gap-4 gap-2 justify-between  items-center">
-                <div className=" w-full relative">
+                <div className=" w-full  relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                    <FaUser className="md:w-4 w-3 h-3 md:h-4 text-gray-500 dark:text-gray-400" />
+                    <FaUser className="md:w-4 w-3 md:h-4 h-3 text-gray-500 dark:text-gray-400" />
                   </div>
                   <input
                     type="text"
-                    className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10 p-[7px] md:p-2.5  "
+                    className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10 p-2.5  "
                     placeholder="First Name"
                   />
                 </div>
@@ -79,7 +79,7 @@ const Checkout = () => {
                   </div>
                   <input
                     type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-[7px] md:p-2.5   "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-2.5   "
                     placeholder="Last Name"
                   />
                 </div>
@@ -90,7 +90,7 @@ const Checkout = () => {
                 </div>
                 <input
                   type="text"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-[7px] md:p-2.5   "
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10  p-2.5   "
                   placeholder="Street Address"
                 />
               </div>
@@ -100,7 +100,7 @@ const Checkout = () => {
                 </div>
                 <input
                   type="text"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-[7px] md:p-2.5   "
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10  p-2.5   "
                   placeholder="Apartment, floor, etc. (optional) "
                 />
               </div>
@@ -110,7 +110,7 @@ const Checkout = () => {
                 </div>
                 <input
                   type="text"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-[7px] md:p-2.5   "
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10  p-2.5   "
                   placeholder="Town/City"
                 />
               </div>
@@ -121,7 +121,7 @@ const Checkout = () => {
                   </div>
                   <input
                     type="text"
-                    className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10 p-[7px] md:p-2.5  "
+                    className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block  ps-10  p-2.5  "
                     placeholder="Phone Number"
                   />
                 </div>
@@ -131,7 +131,7 @@ const Checkout = () => {
                   </div>
                   <input
                     type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10 p-[7px] md:p-2.5   "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm outline-none block w-full ps-10  p-2.5   "
                     placeholder="Email Address"
                   />
                 </div>
