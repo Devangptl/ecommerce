@@ -9,7 +9,7 @@ import Support from "../components/Support";
 const About = () => {
   return (
     <div>
-      <div className=" mt-[5%] px-[7%]">
+      <div className=" mt-[18%] md:mt-[5%] px-[7%]">
         <p className="text-[#6e6d6d]  pt-[4%] ">
           {" "}
           <Link to={"/"} className=" pr-1 ">
@@ -18,9 +18,9 @@ const About = () => {
           / <span className=" font-medium text-black pl-1 "> About</span>{" "}
         </p>
 
-        <div className=" grid grid-cols-2 gap-4">
-          <div className=" w-[500px] gap-4 flex flex-col items-start justify-center">
-            <h1 className=" text-[50px] font-bold  ">Our Story <span className="text-[40px]">...</span></h1>
+        <div className=" md:grid grid-cols-2 gap-4">
+          <div className=" md:w-[500px] gap-4 md:flex flex-col items-start justify-center">
+            <h1 className=" text-[40px] md:text-[50px] font-bold  ">Our Story <span className="text-[40px]">...</span></h1>
             <p className=" text-[18px] text-justify ">
               Launced in 2024, Exclusive is India premier online shopping
               makterplace with an active presense in Gujrat. Supported by wide
@@ -44,8 +44,8 @@ const About = () => {
 
         <div>
           <div>
-            <div className=" mt-20 px-9 flex flex-col gap-4">
-              <div className=" flex items-center gap-4 w-full  ">
+            <div className=" mt-12 md:mt-20 md:px-9 flex flex-col gap-4">
+              <div className=" flex items-center gap-1 md:gap-4 w-full  ">
                 {category.map((item) => {
                   return (
                     <div
@@ -56,13 +56,13 @@ const About = () => {
                         key={item.id}
                         className="flex flex-col gap-1 items-center justify-center"
                       >
-                        <p className=" group-hover:bg-white duration-500 bg-gray-400 p-[8px]  rounded-full text-white text-[30px] ">
+                        <p className=" group-hover:bg-white duration-500 bg-gray-400 p-[8px]  rounded-full text-white text-[20px] md:text-[30px] ">
                           <p className=" bg-black p-[10px] rounded-full  ">
                             {item.icon}
                           </p>
                         </p>
-                        <p className=" text-[30px] pt-2 font-bold">{item.number} </p>
-                        <p className=" text-[20px]  ">{item.name} </p>
+                        <p className=" text-[20px] md:text-[30px]  pt-2 font-bold">{item.number} </p>
+                        <p className=" text-[10px] md:text-[20px] px-1 ">{item.name} </p>
                       </div>
                     </div>
                   );
@@ -92,19 +92,14 @@ const category = [
     id: 2,
     icon: <FaIndianRupeeSign />,
     number: "33k",
-    name: "Monthly Produduct Sale",
+    name: "Monthly Product Sale",
   },
-  {
-    id: 3,
-    icon: <LuBaggageClaim />,
-    number: "4.5k",
-    name: "Customer active in our site",
-  },
+
   {
     id: 4,
     icon: <GiProgression />,
     number: "25k",
-    name: "Anual gross sale in our site",
+    name: "Anual gross sale",
   },
 ];
 

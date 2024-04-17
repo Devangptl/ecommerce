@@ -8,7 +8,7 @@ import { TiMessageTyping } from "react-icons/ti";
 const Contact = () => {
   return (
     <div className=" mb-[100px] ">
-      <div className="  mt-[5%] px-[7%]">
+      <div className="  md:mt-[5%] mt-[18%] px-[7%]">
         <p className="text-[#6e6d6d]  py-[4%] ">
           {" "}
           <Link to={"/"} className=" pr-1 ">
@@ -17,7 +17,7 @@ const Contact = () => {
           / <span className=" font-medium text-black pl-1 "> Contact</span>{" "}
         </p>
 
-        <div className=" grid grid-cols-3 gap-16 ">
+        <div className=" md:grid grid-cols-3 gap-16 ">
           <div className=" shadow-lg rounded-lg px-7 py-5  col-span-1">
             <div className=" py-6 flex flex-col gap-4">
               <div className=" flex gap-3 items-center ">
@@ -51,9 +51,9 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className=" shadow-xl rounded-lg px-7 py-4 col-span-2">
+          <div className=" shadow-xl md:mt-0 mt-7 rounded-lg px-7 py-4 col-span-2">
             <div className=" flex flex-col gap-8  rounded-md">
-              <div className=" flex gap-4 justify-between  items-center">
+              <div className=" md:flex-row flex flex-col gap-4 justify-between items-center">
                 <div className=" w-full relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                     <FaUser className="w-4 h-4 text-gray-500 dark:text-gray-400" />

@@ -26,7 +26,7 @@ const Navbar = () => {
     <div className=" fixed top-0 z-20 w-full bg-white border border-b-2 md:py-5 py-2  flex flex-row justify-around items-center">
       <Link to={"/"} className=" ">
 
-      <img className=" md:w-36 w-20 " src="https://res.cloudinary.com/dlmg58jtr/image/upload/v1709988790/1709906423917_qjqayk.png" alt="" />
+      <img className=" md:w-36 w-[65px] " src="https://res.cloudinary.com/dlmg58jtr/image/upload/v1709988790/1709906423917_qjqayk.png" alt="" />
       </Link>
 
 
@@ -34,11 +34,11 @@ const Navbar = () => {
           <div
             className={
               open
-                ? "fixed   bg-opacity-75 bg-[#0a192f] md:hidden right-0 top-[50px] w-full  order-r border-r-[#0a192f] ease-in-out duration-700"
-                : "ease-in-out w-[100%]  h-[29%]  border-r-[#0a192f]  duration-700 fixed top-[-30%] bottom-0  right-[-100%]"
+                ? "fixed   bg-none bgblure backdrop-filter backdrop-blur-[80px] md:hidden right-0  top-[48px] w-full  order-r border-r-[#0a192f] ease-in-out duration-700"
+                : "ease-in-out w-[100%]  h-[29%]  border-r-[#0a192f]  duration-700 fixed top-[48px] bottom-0  right-[-100%]"
             }
           >
-             <div className=" flex tracking-wide text-white text-lg  py-7   flex-col items-center gap-2">
+             <div className=" flex tracking-wide text-[#db4444] text-lg  py-7   flex-col items-center gap-2">
         <Link
           to={"/"}
           className=" duration-300 underline-offset-8 hover:underline  hover:text-orange-600"
@@ -103,10 +103,17 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className=" text-[#3c3c3c]   flex flex-row items-center md:gap-7 gap-4 ">
+      <div className=" text-[#3c3c3c]   flex flex-row items-center md:gap-7 gap-3 ">
        
        <Search/>
 
+       <Link to={"/myaccount"}
+            tabIndex={0}
+            role="button"
+            className=" bg-[#db4444] block md:hidden rounded-full md:text-[25px] text-white m-1"
+          >
+            <CgProfile />
+          </Link>
       
 
         <Link to={"/wishlist"} className=" hidden md:flex relative pl-3 text-[24px]">
@@ -131,7 +138,7 @@ const Navbar = () => {
           }
         </label>
 
-        <div className="hidden md:flex dropdown dropdown-hover">
+        <div className="hidden md:block dropdown dropdown-hover">
           <div
             tabIndex={0}
             role="button"

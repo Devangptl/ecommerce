@@ -36,7 +36,7 @@ const Profile = ({token}) => {
         //   },
         // });
 
-        const url = `http://localhost:1337/api/users/me?populate=*`;
+        const url = `${process.env.REACT_APP_STRIPE_APP_URL}/api/users/me?populate=*`;
       
         const data = await fetch(url ,{
           method : "GET",
@@ -46,6 +46,8 @@ const Profile = ({token}) => {
         })
 
         const res = await data.json()
+
+        console.log(res);
 
         setUser(res);
         setisUserUpdated(false);
@@ -59,8 +61,8 @@ const Profile = ({token}) => {
 
   return (
     <div>
-      <div className="px-[7%] mt-[5%]">
-        <div className=" flex items-center  py-[4%] justify-between">
+      <div className="px-[7%] mt-[17%]  md:mt-[5%]">
+        <div className=" flex items-center  py-[6%] md:py-[4%] justify-between">
           <p className="text-[#6e6d6d]  ">
             {" "}
             <Link to={"/"} className=" pr-1 ">
@@ -69,12 +71,12 @@ const Profile = ({token}) => {
             / <span className=" font-medium text-black pl-1 "> My Account</span>{" "}
           </p>
           <p>
-            Welcome!<span className=" text-[#db4444]">Devang Patel</span>{" "}
+            Welcome!<span className=" text-[#db4444]">{user.email}</span>{" "}
           </p>
         </div>
 
-        <div className="  grid grid-cols-5">
-          <div className=" flex flex-col justify-start items-center gap-3 text-[18px] col-span-2">
+        <div className="  md:grid grid-cols-5">
+          <div className=" flex md:flex-col justify-around md:justify-start items-center gap-3 text-[18px] col-span-2">
             <button onClick={()=>setIsSelect(0)}  className={`${isSelect == 1 ? "" : "text-[#db4444]"} text-[18.5px] `} >My Profile</button>
             <button onClick={()=>setIsSelect(1)}  className={`${isSelect == 0 ? "" : "text-[#db4444]"}`}>Edit Profile</button>
           </div>

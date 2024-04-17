@@ -23,7 +23,7 @@ const Signup = () => {
         password : password
       }
 
-      const url = `http://localhost:1337/api/auth/local/register`;
+      const url = `${process.env.REACT_APP_STRIPE_APP_URL}/api/auth/local/register`;
       
       const register = await fetch(url ,{
         method : "POST",
@@ -35,7 +35,7 @@ const Signup = () => {
       })
 
       const registerRes = await register.json() ;
-      console.log(registerRes);
+      // console.log(registerRes);
       if(registerRes){
         navigate('/login')
       }
