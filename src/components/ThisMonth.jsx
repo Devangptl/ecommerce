@@ -8,11 +8,12 @@ import { toast } from 'sonner';
 import { addToCart } from '../features/cartSlice';
 import { addToWishlist } from '../features/wishlistSlice';
 import useFetch from '../hooks/useFetch';
+import HomeLoader from './HomeLoader';
 
 const ThisMonth = () => {
 
     //  console.log(data);
-    const {data} = useFetch('/api/products?populate=*&pagination[pageSize]=20')
+    const {data , isLoading} = useFetch('/api/products?populate=*&pagination[pageSize]=20')
 
 
 
@@ -40,6 +41,8 @@ const ThisMonth = () => {
           <Link to= {"/thismonths"} className=' hover:bg-white hover:text-[#db4444] hover:border border border-[#db4444] duration-300 md:text-[15px] text-[12px] bg-[#db4444] text-white md:px-7 px-3 md:py-2 py-1 rounded-[4px] ' >View All</Link>
         </div>
 
+        {
+    isLoading== true ? <div className="grid md:grid-cols-5 grid-cols-2   gap-3"><HomeLoader/><HomeLoader/><HomeLoader/><HomeLoader/><HomeLoader/><HomeLoader/></div> : 
         <div className=" grid md:grid-cols-5 grid-cols-2   gap-3 ">
           {data?.map((item ) => {
             if(item.attributes.thisMonth === true){
@@ -71,7 +74,7 @@ const ThisMonth = () => {
                     <img
                       // width={300}
                       className=" w-[150px] md:w-[300px]  py-4 px-5 hover:scale-105 duration-300  "
-                      src={process.env.REACT_APP_STRIPE_UP_URL +
+                      src={
                         item.attributes.image.data[0].attributes.url}
                       alt=""
                     />
@@ -99,6 +102,7 @@ const ThisMonth = () => {
             }
           })}
         </div>
+}
 
         {/* hr line */}
         <div className=" mt-10 border border-b-1  border-gray-400"></div>

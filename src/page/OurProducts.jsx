@@ -9,13 +9,14 @@ import { addToCart } from "../features/cartSlice";
 import Rating from "../components/Rating";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
+import Loading from "../components/Loading";
 
 const OurProducts = () => {
 
   const { id , title } = useParams();
 
 
-  const {data} = useFetch('/api/products?populate=*&pagination[pageSize]=100')
+  const {data , isLoading} = useFetch('/api/products?populate=*&pagination[pageSize]=100')
 
 
 const dispatch = useDispatch();
@@ -29,7 +30,9 @@ const tostWishlist = (title ) => {
  
 };
 
-
+if(isLoading){
+  return <Loading/>
+}
 
   return <div >
 
@@ -75,7 +78,6 @@ const tostWishlist = (title ) => {
                     
                     className=" md:w-[200px] w-[150px]  py-4 px-5 hover:scale-105 duration-300  "
                     src={
-                      process.env.REACT_APP_STRIPE_UP_URL +
                       item.attributes.image.data[0].attributes.url
                     }
                     alt=""

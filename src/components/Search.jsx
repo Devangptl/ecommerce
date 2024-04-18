@@ -50,7 +50,6 @@ const Search = () => {
                   // width={25}
                   className=" w-[20px] md:w-[25px]"
                   src={
-                    process.env.REACT_APP_STRIPE_UP_URL +
                     item.attributes.image.data[0].attributes.url
                   }
                   alt=""

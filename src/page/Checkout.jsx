@@ -157,7 +157,6 @@ const Checkout = () => {
                             <div className="mask mask-squircle w-7 h-7 md:w-12 md:h-12">
                               <img
                                 src={
-                                  process.env.REACT_APP_STRIPE_UP_URL +
                                   item.attributes.image.data[0].attributes.url
                                 }
                                 alt=""

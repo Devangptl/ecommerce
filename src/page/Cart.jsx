@@ -99,7 +99,7 @@ const Cart = () => {
                         <div className="flex items-center md:gap-3">
                           <div className="avatar">
                             <div className="mask mask-squircle w-8 h-8 md:w-12 md:h-12">
-                              <img className=" hover:scale-105 duration-300 " src={process.env.REACT_APP_STRIPE_UP_URL +
+                              <img className=" hover:scale-105 duration-300 " src={
                         item.attributes.image.data[0].attributes.url} alt="" />
                             </div>
                           </div>

@@ -10,12 +10,13 @@ import { addToCart } from "../features/cartSlice";
 import { toast } from "sonner";
 import { addToWishlist } from "../features/wishlistSlice";
 import useFetch from "../hooks/useFetch";
+import HomeLoader from "./HomeLoader";
 
 const Today = () => {
   // console.log(data);
 
-  const { data } = useFetch("/api/products?populate=*&pagination[pageSize]=7");
-  console.log(data);
+  const { data , isLoading } = useFetch("/api/products?populate=*&pagination[pageSize]=7");
+  // console.log(data);
   
 
   const tostCart = (title) => {
@@ -39,6 +40,7 @@ const Today = () => {
     } else {
       // Render a countdown
       return (
+        
         <span className=" flex  items-center justify-center">
           {" "}
           <span className="  px-3 rounded-full flex-col flex items-center ">
@@ -65,8 +67,11 @@ const Today = () => {
     }
   };
 
+ 
+
   return (
     <div className=" mt-8 md:mt-20 flex flex-col gap-4">
+   
       <div className=" flex  items-center gap-2">
         <p className="  border-[#db4444] rounded-sm border-l-[15px] w-[20px] h-[35px]"></p>
         <p className=" text-[14px] md:text-[18px] font-extrabold text-[#db4444] ">Today's</p>
@@ -80,9 +85,13 @@ const Today = () => {
         </p>
       </div>
 
-      <div>
+    <div>
         <div className="carousel flex   gap-2 ">
-          {data?.map((item) => {
+  {
+    isLoading== true ? <div className="flex  items-center justify-center gap-4"><HomeLoader/><HomeLoader/><HomeLoader/><HomeLoader/><HomeLoader/></div>  : 
+          
+            data?.map((item) => {
+            // console.log(item.attributes.image.data[0].attributes.url);
             if (item.attributes.isNew === true) {
               return (
                 <div
@@ -125,7 +134,6 @@ const Today = () => {
                     <img
                       className="h-[200px] w-[200px] m-auto p-3  hover:scale-105 duration-300  "
                       src={
-                        process.env.REACT_APP_STRIPE_UP_URL +
                         item.attributes.image.data[0].attributes.url
                       }
                       alt=""
@@ -184,8 +192,12 @@ const Today = () => {
               );
             }
           })}
+        
         </div>
-      </div>
+      </div> 
+    
+
+      
 
       <div className="  text-center my-[20px] md:my-[50px]">
         <Link

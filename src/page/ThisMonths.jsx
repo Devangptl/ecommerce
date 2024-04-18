@@ -9,10 +9,11 @@ import { addToCart } from "../features/cartSlice";
 import { addToWishlist } from "../features/wishlistSlice";
 import useFetch from "../hooks/useFetch";
 import Rating from "../components/Rating";
+import Loading from "../components/Loading";
 
 const ThisMonths = () => {
   //  console.log(data);
-  const { data } = useFetch("/api/products?populate=*&pagination[pageSize]=100");
+  const { data , isLoading } = useFetch("/api/products?populate=*&pagination[pageSize]=100");
 
   const items = useSelector((state) => state.allCart.item);
 
@@ -24,6 +25,10 @@ const ThisMonths = () => {
   const tostWishlist = (title) => {
     toast.success(`${title} added to Wishlist `);
   };
+
+  if(isLoading){
+    return <Loading/>
+  }
 
   return (
     <div>
@@ -44,7 +49,7 @@ const ThisMonths = () => {
                 return (
                   <div key={item.id} className=" group flex gap-2 flex-col  ">
                     <div className=" relative">
-                      <p className=" absolute  bg-[#db4444] top-4 text-[10px] md:text-[12px] w-[35px] md:w-[50px]  z-10 font-semibold text-white md:px-2 px-1 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none ">
+                      <p className=" absolute  bg-[#ff5050] top-4 text-[10px] md:text-[12px] w-[35px] md:w-[50px]  z-10 font-semibold text-white md:px-2 px-1 py-1  rounded-[3px] rounded-bl-none  rounded-tr-none ">
                         - {item.attributes.discount} %
                       </p>
                     </div>
@@ -80,7 +85,6 @@ const ThisMonths = () => {
                         width={300}
                         className=" w-[150px] md:w-[300px]   py-4 px-5 hover:scale-105 duration-300  "
                         src={
-                          process.env.REACT_APP_STRIPE_UP_URL +
                           item.attributes.image.data[0].attributes.url
                         }
                         alt=""

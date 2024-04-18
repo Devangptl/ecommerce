@@ -8,10 +8,11 @@ import { toast } from 'sonner';
 import { addToCart } from '../features/cartSlice';
 import { addToWishlist } from '../features/wishlistSlice';
 import useFetch from '../hooks/useFetch';
+import HomeLoader from './HomeLoader';
 
 const OurProducts = () => {
   
-  const {data} = useFetch('/api/products?populate=*&pagination[pageSize]=10')
+  const {data,isLoading} = useFetch('/api/products?populate=*&pagination[pageSize]=10')
 
   const items = useSelector((state) => state.allCart.item);
 
@@ -42,6 +43,8 @@ const OurProducts = () => {
       </div>
 
       <div>
+      {
+    isLoading== true ?  <div className="grid md:grid-cols-5 grid-cols-2   gap-3"><HomeLoader/><HomeLoader/><HomeLoader/><HomeLoader/><HomeLoader/><HomeLoader/></div>  : 
         <div className=" grid md:grid-cols-5 grid-cols-2  gap-3">
           {data?.map((item) => {
             return (
@@ -73,7 +76,6 @@ const OurProducts = () => {
                     
                     className=" w-[150px] md:w-[200px] m-auto  py-4 px-5 hover:scale-105 duration-300  "
                     src={
-                      process.env.REACT_APP_STRIPE_UP_URL +
                       item.attributes.image.data[0].attributes.url
                     }
                     alt=""
@@ -100,6 +102,7 @@ const OurProducts = () => {
             );
           })}
         </div>
+}
       
       </div>
 

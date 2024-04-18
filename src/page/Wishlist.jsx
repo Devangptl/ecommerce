@@ -9,11 +9,12 @@ import { addToCart } from "../features/cartSlice";
 import { addToWishlist, removerItem } from "../features/wishlistSlice";
 import { IoHeartDislikeOutline } from "react-icons/io5";
 import useFetch from "../hooks/useFetch";
+import Loading from "../components/Loading";
 
 const Wishlist = () => {
   const { wishlist } = useSelector((state) => state.allWishlist);
 
-  const { data } = useFetch("/api/products?populate=*&pagination[pageSize]=4");
+  const { data , isLoading } = useFetch("/api/products?populate=*&pagination[pageSize]=4");
 
   const tostCart = (title) => {
     toast.success(`${title} added to cart`);
@@ -27,6 +28,10 @@ const Wishlist = () => {
   };
 
   const dispatch = useDispatch();
+
+  if(isLoading){
+    return <Loading/>
+  }
 
   return (
     <div className=" px-5 md:px-[10%]  mt-20 md:mt-[130px]">
@@ -77,7 +82,7 @@ const Wishlist = () => {
                     <img
                       width={300}
                       className="  py-4 px-5 hover:scale-105 duration-300  "
-                      src={process.env.REACT_APP_STRIPE_UP_URL +
+                      src={
                         item.attributes.image.data[0].attributes.url}
                       alt=""
                     />
@@ -155,7 +160,6 @@ const Wishlist = () => {
                     width={300}
                     className="  py-4 px-5 hover:scale-105 duration-300  "
                     src={
-                      process.env.REACT_APP_STRIPE_UP_URL +
                       item.attributes.image.data[0].attributes.url
                     }
                     alt=""

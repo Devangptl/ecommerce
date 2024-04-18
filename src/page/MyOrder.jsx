@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import useFetch from '../hooks/useFetch';
+import Loading from '../components/Loading';
 
 const MyOrder = () => {
 
@@ -9,9 +10,13 @@ const MyOrder = () => {
 
 
     const { cart } = useSelector((state) => state.allCart);
-    const { data } = useFetch("/api/orders");
+    const { data , isLoading} = useFetch("/api/orders");
 
     console.log(data);
+
+    if(isLoading){
+      return <Loading/>
+    }
 
   return (
     <div className=' mt-[8%] px-[5%]'>
@@ -31,7 +36,6 @@ const MyOrder = () => {
                             <div className="mask mask-squircle w-12 h-12">
                               <img
                                 src={
-                                  process.env.REACT_APP_STRIPE_UP_URL +
                                   item.attributes.image.data[0].attributes.url
                                 }
                                 alt=""

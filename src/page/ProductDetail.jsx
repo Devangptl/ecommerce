@@ -9,6 +9,7 @@ import {
 } from "../features/cartSlice";
 import useFetch from "../hooks/useFetch";
 import { toast } from "sonner";
+import Loading from "../components/Loading";
 
 const ProductDetail = () => {
   // const [product , setProduct] = useState([])
@@ -17,7 +18,7 @@ const ProductDetail = () => {
 
   const { id } = useParams();
 
-  const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
+  const { data ,isLoading } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
   // console.log(data);
 
   const product = data?.[0]?.attributes;
@@ -41,6 +42,9 @@ const ProductDetail = () => {
     toast.success(`${title} added to cart`);
   };
 
+  if(isLoading){
+    return <Loading/>
+  }
   return (
     <div className="2xl:container mt-[3%] 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 ">
       <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
@@ -88,10 +92,8 @@ const ProductDetail = () => {
             <img
               className="hover:scale-110 duration-300 "
               src={
-                process.env.REACT_APP_STRIPE_UP_URL +
                 product?.image?.data?.[0].attributes?.url
               }
-              alt="Wooden Chair Previw"
             />
           </div>
           <div className="   w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
@@ -99,36 +101,30 @@ const ProductDetail = () => {
               <img
                 className="hover:scale-110 duration-300 "
                 src={
-                  process.env.REACT_APP_STRIPE_UP_URL +
                   (product?.image?.data?.[1].attributes?.url === undefined
                     ? product?.image?.data?.[0].attributes?.url
                     : product?.image?.data?.[1].attributes?.url)
                 }
-                alt="Wooden chair - preview 1"
               />
             </div>
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
                 src={
-                  process.env.REACT_APP_STRIPE_UP_URL +
                   (product?.image?.data?.[2].attributes?.url === undefined
                     ? product?.image?.data?.[0].attributes?.url
                     : product?.image?.data?.[2].attributes?.url)
                 }
-                alt="Wooden chair - preview 2"
               />
             </div>
             <div className="overflow-hidden bg-gray-100 flex justify-center items-center py-4">
               <img
                 className="hover:scale-110 duration-300 "
                 src={
-                  process.env.REACT_APP_STRIPE_UP_URL +
                   (product?.image?.data?.[3].attributes?.url === undefined
                     ? product?.image?.data?.[0].attributes?.url
                     : product?.image?.data?.[3].attributes?.url)
                 }
-                alt="Wooden chair- preview 3"
               />
             </div>
           </div>

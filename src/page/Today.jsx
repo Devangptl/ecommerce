@@ -9,21 +9,26 @@ import { addToCart } from "../features/cartSlice";
 import { addToWishlist } from "../features/wishlistSlice";
 import useFetch from "../hooks/useFetch";
 import Rating from "../components/Rating";
+import Loading from "../components/Loading";
 
 const Today = () => {
   //  console.log(data);
-  const { data } = useFetch("/api/products?populate=*&pagination[pageSize]=100");
+  const { data , isLoading } = useFetch("/api/products?populate=*&pagination[pageSize]=100");
 
-
+  console.log(isLoading);
+  
   const dispatch = useDispatch();
-
+  
   const tostCart = (title) => {
     toast.success(`${title} added to cart`);
   };
   const tostWishlist = (title) => {
     toast.success(`${title} added to Wishlist `);
   };
-
+  
+  if(isLoading){
+    return <Loading/>
+  }
   return (
     <div>
       <div>
@@ -79,7 +84,6 @@ const Today = () => {
                         
                         className=" w-[150px] md:w-[300px]  py-4 px-5 hover:scale-105 duration-300  "
                         src={
-                          process.env.REACT_APP_STRIPE_UP_URL +
                           item.attributes.image.data[0].attributes.url
                         }
                         alt=""
