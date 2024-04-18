@@ -48,37 +48,37 @@ const Categories = () => {
 
 const category = [
   {
-    id: 1,
+    id: 29,
     icon: <IoPhonePortraitOutline />,
     name: "Phones",
   },
   {
-    id: 2,
+    id: 30,
     icon: <HiOutlineComputerDesktop />,
     name: "Computers",
   },
   {
-    id: 3,
+    id: 31,
     icon: <BsSmartwatch />,
     name: "SmartWatch",
   },
   {
-    id: 4,
+    id: 32,
     icon: <IoCameraOutline />,
     name: "Camera",
   },
   {
-    id: 5,
+    id: 33,
     icon: <GiHeadphones />,
     name: "HeadPhones",
   },
   {
-    id: 6,
+    id: 34,
     icon: <MdSportsEsports />,
     name: "Gaming",
   },
   {
-    id: 7,
+    id: 35,
     icon: <SiHomeassistant  />,
     name: "Home Appliances",
   },

@@ -16,9 +16,10 @@ const Categories = () => {
   const { id , title } = useParams();
 
 
-  const {data , isLoading} = useFetch(`/api/products?populate=*&[filters][categories][id]=${id}&pagination[pageSize]=100`)
-  
-//  console.log(data);
+  // const {data} = useFetch(`/api/products?populate=*&[filters][categories][id]=${id}&pagination[pageSize]=100`) 
+  const {data , isLoading} = useFetch(`/api/products?populate=*&[filters][categories][id]=${id}&pagination[pageSize]=100`) 
+
+ console.log(data);
 
 // const {sub_data} = useFetch('/api/sub-categories')
 // console.log(title);
@@ -38,7 +39,8 @@ if(isLoading){
   return <Loading/>
 }
 
-  return <div >
+  return (
+   <div >
 
     <div className=" mt-20 md:my-[10%] px-5 md:px-[14%] ">
 
@@ -48,7 +50,7 @@ if(isLoading){
         <Link to={"/"} className=" pr-1 ">
           Home{" "}
         </Link>{" "}
-        / <span className=" font-medium text-black pl-1 "> {title}</span>{" "}
+        / <span className=" font-medium text-black pl-1 "> {title}</span>
       </p>
   
     <div>
@@ -110,7 +112,7 @@ if(isLoading){
       
       </div>
   </div>
-  </div>;
+  </div>)
 };
 
 export default Categories;

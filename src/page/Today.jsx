@@ -15,7 +15,7 @@ const Today = () => {
   //  console.log(data);
   const { data , isLoading } = useFetch("/api/products?populate=*&pagination[pageSize]=100");
 
-  console.log(isLoading);
+  // console.log(isLoading);
   
   const dispatch = useDispatch();
   
